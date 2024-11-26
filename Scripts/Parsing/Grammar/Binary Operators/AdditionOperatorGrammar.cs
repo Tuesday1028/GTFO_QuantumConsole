@@ -1,0 +1,14 @@
+﻿using System.Linq.Expressions;
+
+namespace Hikaria.QC.Grammar
+{
+    public class AdditionOperatorGrammar : BinaryAndUnaryOperatorGrammar
+    {
+        public override int Precedence => 0;
+
+        protected override char OperatorToken => '+';
+        protected override string OperatorMethodName => "op_Addition";
+
+        protected override Func<Expression, Expression, BinaryExpression> PrimitiveExpressionGenerator => Expression.Add;
+    }
+}
