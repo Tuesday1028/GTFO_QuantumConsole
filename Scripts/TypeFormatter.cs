@@ -1,4 +1,5 @@
 ﻿using Il2CppInterop.Runtime.Attributes;
+using TheArchive.Loader;
 using UnityEngine;
 
 
@@ -18,12 +19,18 @@ public sealed class PreserveAttribute : Attribute
 namespace Hikaria.QC
 {
     [Il2CppImplements(typeof(ISerializationCallbackReceiver))]
-    public abstract class TypeFormatter
+    public abstract class TypeFormatter : Il2CppSystem.Object
     {
         public Type Type { get; private set; }
         private string _type;
 
-        protected TypeFormatter(Type type) { Type = type; }
+        protected TypeFormatter(Type type) : base(LoaderWrapper.ClassInjector.DerivedConstructorPointer<TypeFormatter>())
+        {
+            Type = type;
+            LoaderWrapper.ClassInjector.DerivedConstructorBody(this);
+        }
+
+        public TypeFormatter(IntPtr ptr) : base(ptr) { }
 
         public void OnAfterDeserialize()
         {

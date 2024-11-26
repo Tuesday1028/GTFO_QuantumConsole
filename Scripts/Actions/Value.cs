@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Hikaria.QC.Actions
+﻿namespace Hikaria.QC.Actions
 {
     /// <summary>
     /// Serializes and logs a value to the console.
@@ -27,7 +25,7 @@ namespace Hikaria.QC.Actions
         {
             QuantumConsole console = context.Console;
             string serialized = _value as string ?? console.Serialize(_value);
-            console.LogToConsole(serialized, LogType.Log, false, _newline);
+            console.LogToConsole(serialized, LogLevel.Message, false, _newline);
         }
     }
 }

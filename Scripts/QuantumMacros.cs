@@ -44,13 +44,10 @@
             {
                 if (text[i] == '#')
                 {
-                    if (orderedTableCache == null)
-                    {
-                        orderedTableCache =
+                    orderedTableCache ??=
                             _macroTable
                                 .OrderByDescending(x => x.Key.Length)
                                 .ToArray();
-                    }
 
                     foreach (KeyValuePair<string, string> macro in orderedTableCache)
                     {

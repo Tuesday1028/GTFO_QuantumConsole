@@ -48,10 +48,7 @@ namespace Hikaria.QC.Grammar
 
         private bool IsSyntaxMatch(string value)
         {
-            if (_operatorRegex == null)
-            {
-                _operatorRegex = new Regex($@"^.+\{OperatorToken}.+$");
-            }
+            _operatorRegex ??= new Regex($@"^.+\{OperatorToken}.+$");
 
             if (!_operatorRegex.IsMatch(value))
             {

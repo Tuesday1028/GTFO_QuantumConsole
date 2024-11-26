@@ -1,11 +1,9 @@
-﻿using Il2CppInterop.Runtime.Attributes;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Hikaria.QC.UI
 {
-    //[Il2CppImplements(typeof(IDragHandler))]
     public class ResizableUI : MonoBehaviour
     {
         private RectTransform _resizeRoot = null;

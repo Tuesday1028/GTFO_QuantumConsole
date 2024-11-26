@@ -1,12 +1,10 @@
-﻿using Il2CppInterop.Runtime.Attributes;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Hikaria.QC.UI
 {
-    //[Il2CppImplements(typeof(IPointerUpHandler), typeof(IPointerDownHandler))]
     public class DraggableUI : MonoBehaviour
     {
         private RectTransform _dragRoot = null;

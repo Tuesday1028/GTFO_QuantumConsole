@@ -1,20 +1,19 @@
-﻿namespace Hikaria.QC
+﻿using Hikaria.QC.Loader;
+
+namespace Hikaria.QC
 {
     public class QuantumLocalization
     {
-        public string Loading = "Loading...";
-        public string ExecutingAsyncCommand = "Executing async command...";
-        public string EnterCommand = "Enter Command...";
+        public string Loading => QuantumConsoleLoader.Localization.Get(1);
+        public string ExecutingAsyncCommand => QuantumConsoleLoader.Localization.Get(2);
+        public string EnterCommand => QuantumConsoleLoader.Localization.Get(3);
 
-        public string CommandError = "Error";
-        public string ConsoleError = "Quantum Processor Error";
-        public string MaxLogSizeExceeded = "Log of size {0} exceeded the maximum log size of {1}";
+        public string CommandError => QuantumConsoleLoader.Localization.Get(4);
+        public string ConsoleError => QuantumConsoleLoader.Localization.Get(5);
+        public string MaxLogSizeExceeded => QuantumConsoleLoader.Localization.Get(6);
 
-        public string InitializationProgress =
-            "Q:\\>Quantum Console Processor is initializing\n" +
-            "Q:\\>Table generation under progress\n" +
-            "Q:\\>{0} commands have been loaded";
+        public string InitializationProgress => QuantumConsoleLoader.Localization.Get(7);
 
-        public string InitializationComplete = "Q:\\>Quantum Console Processor ready";
+        public string InitializationComplete => QuantumConsoleLoader.Localization.Get(8);
     }
 }

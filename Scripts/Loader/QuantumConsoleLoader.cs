@@ -4,6 +4,7 @@ using Hikaria.QC.UI;
 using System.Reflection;
 using TheArchive.Core.Attributes;
 using TheArchive.Core.FeaturesAPI;
+using TheArchive.Core.Localization;
 using TheArchive.Loader;
 using UnityEngine;
 
@@ -14,7 +15,9 @@ namespace Hikaria.QC.Loader
     [HideInModSettings]
     internal class QuantumConsoleLoader : Feature
     {
-        public override string Name => "Quantum Console";
+        public override string Name => "量子终端加载器";
+
+        public static new ILocalizationService Localization { get; set; }
 
         private static Dictionary<string, UnityEngine.Object> s_AssetLookup = new();
 
@@ -31,7 +34,8 @@ namespace Hikaria.QC.Loader
             {
                 if (!_inited)
                 {
-                    _inited = true;
+                    LoaderWrapper.ClassInjector.RegisterTypeInIl2Cpp<CoroutineCommands>();
+                    LoaderWrapper.ClassInjector.RegisterTypeInIl2Cpp<KeyBinderModule>();
 
                     LoaderWrapper.ClassInjector.RegisterTypeInIl2Cpp<QuantumConsole>();
                     LoaderWrapper.ClassInjector.RegisterTypeInIl2Cpp<DraggableUI>();
@@ -41,9 +45,7 @@ namespace Hikaria.QC.Loader
                     LoaderWrapper.ClassInjector.RegisterTypeInIl2Cpp<ZoomUIController>();
                     LoaderWrapper.ClassInjector.RegisterTypeInIl2Cpp<SuggestionDisplay>();
 
-                    LoaderWrapper.ClassInjector.RegisterTypeInIl2Cpp<CoroutineCommands>();
-                    LoaderWrapper.ClassInjector.RegisterTypeInIl2Cpp<KeyBinderModule>();
-
+                    LoaderWrapper.ClassInjector.RegisterTypeInIl2Cpp<TypeFormatter>();
 
                     string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets/quantumconsole");
                     AssetBundle assetBundle = AssetBundle.LoadFromFile(path);
@@ -58,7 +60,7 @@ namespace Hikaria.QC.Loader
                     }
                     UnityEngine.Object.Instantiate(GetLoadedAsset("Assets/Plugins/QFSW/Quantum Console/Source/Prefabs/Quantum Console.prefab").Cast<GameObject>()).AddComponent<QuantumConsole>();
 
-                    BIELogLisener.Init();
+                    _inited = true;
                 }
             }
         }
@@ -69,9 +71,7 @@ namespace Hikaria.QC.Loader
             private static void Prefix(ref bool value)
             {
                 if (QuantumConsole.Instance == null)
-                {
                     return;
-                }
 
                 if (QuantumConsole.Instance.IsActive)
                 {
@@ -86,9 +86,7 @@ namespace Hikaria.QC.Loader
             private static void Prefix(ref CursorLockMode value)
             {
                 if (QuantumConsole.Instance == null)
-                {
                     return;
-                }
 
                 if (QuantumConsole.Instance.IsActive)
                 {

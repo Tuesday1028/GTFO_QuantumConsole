@@ -146,7 +146,7 @@ namespace Hikaria.QC
         {
             if (GetRegistrySize<T>() <= 0) 
             { 
-                return ($"The registry '{typeof(T).GetDisplayName()}' is empty").Yield();
+                return $"The registry '{typeof(T).GetDisplayName()}' is empty".Yield();
             }
 
             return GetRegistryContents<T>();

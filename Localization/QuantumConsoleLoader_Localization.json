@@ -1,0 +1,100 @@
+{
+  "Internal": {
+    "FeatureSettingsTexts": {
+      "Hikaria.QC.Loader.QuantumConsoleLoader.Name": {
+        "FName": {
+          "English": "Quantum Console Loader",
+          "Chinese": "量子终端加载器",
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      }
+    },
+    "FeatureSettingsEnumTexts": {},
+    "ExtraTexts": [
+      {
+        "UntranslatedText": "Loading...",
+        "Description": "Loading",
+        "ID": 1,
+        "Languages": {
+          "English": "Loading...",
+          "Chinese": "加载中..."
+        }
+      },
+      {
+        "UntranslatedText": "Executing async command...",
+        "Description": "ExecutingAsyncCommand",
+        "ID": 2,
+        "Languages": {
+          "English": "Executing async command...",
+          "Chinese": "正在执行异步命令..."
+        }
+      },
+      {
+        "UntranslatedText": "Enter Command...",
+        "Description": "EnterCommand",
+        "ID": 3,
+        "Languages": {
+          "English": "Enter Command...",
+          "Chinese": "输入命令..."
+        }
+      },
+      {
+        "UntranslatedText": "Error",
+        "Description": "CommandError",
+        "ID": 4,
+        "Languages": {
+          "English": "Error",
+          "Chinese": "错误"
+        }
+      },
+      {
+        "UntranslatedText": "Quantum Processor Error",
+        "Description": "ConsoleError",
+        "ID": 5,
+        "Languages": {
+          "English": "Quantum Processor Error",
+          "Chinese": "量子处理器错误"
+        }
+      },
+      {
+        "UntranslatedText": "Log of size {0} exceeded the maximum log size of {1}",
+        "Description": "MaxLogSizeExceeded",
+        "ID": 6,
+        "Languages": {
+          "English": "Log of size {0} exceeded the maximum log size of {1}",
+          "Chinese": "日志长度 {0} 超过了日志的最长限制 {1}"
+        }
+      },
+      {
+        "UntranslatedText": "Q:\\>Quantum Console Processor is initializing\nQ:\\>Table generation under progress\nQ:\\>{0} commands have been loaded",
+        "Description": "InitializationProgress",
+        "ID": 7,
+        "Languages": {
+          "English": "Q:\\>Quantum Console Processor is initializing\nQ:\\>Table generation under progress\nQ:\\>{0} commands have been loaded",
+          "Chinese": "Q:\\>量子终端处理器已初始化\nQ:\\>正在加载命令列表\nQ:\\>已加载 {0} 条命令"
+        }
+      },
+      {
+        "UntranslatedText": "Q:\\>Quantum Console Processor ready",
+        "Description": "InitializationComplete",
+        "ID": 8,
+        "Languages": {
+          "English": "Q:\\>Quantum Console Processor ready",
+          "Chinese": "Q:\\>量子终端处理器已就绪"
+        }
+      }
+    ]
+  },
+  "External": {
+    "ExternalFeatureSettingsTexts": {},
+    "ExternalEnumTexts": {}
+  }
+}

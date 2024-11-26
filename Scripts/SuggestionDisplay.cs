@@ -1,11 +1,9 @@
-﻿using Il2CppInterop.Runtime.Attributes;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Hikaria.QC
 {
-    [Il2CppImplements(typeof(IPointerClickHandler))]
     public class SuggestionDisplay : MonoBehaviour
     {
         private QuantumConsole _quantumConsole = null;
@@ -15,6 +13,13 @@ namespace Hikaria.QC
         {
             self._quantumConsole = console;
             self._textArea = textArea;
+
+            var eventTrigger = self.gameObject.AddComponent<EventTrigger>();
+
+            var onPointerClickEntry = new EventTrigger.Entry();
+            onPointerClickEntry.eventID = EventTriggerType.PointerClick;
+            onPointerClickEntry.callback.AddListener(new Action<BaseEventData>((data) => { self.OnPointerClick(data.Cast<PointerEventData>()); }));
+            eventTrigger.triggers.Add(onPointerClickEntry);
         }
 
         public void OnPointerClick(PointerEventData eventData)

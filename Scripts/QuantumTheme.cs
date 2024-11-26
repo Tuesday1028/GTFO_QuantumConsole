@@ -44,18 +44,26 @@ namespace Hikaria.QC
             return quantumTheme;
         }
 
-        public TMP_FontAsset Font = QuantumConsoleLoader.GetLoadedAsset("Assets/Plugins/QFSW/Quantum Console/Source/Fonts/TMP/OfficeCodePro-Regular SDF.asset").Cast<TMP_FontAsset>();
-        public Material PanelMaterial = QuantumConsoleLoader.GetLoadedAsset("Assets/Plugins/QFSW/Quantum Console/Source/Materials/Blur Panel.mat").Cast<Material>();
-        public Color PanelColor = Color.white;
+        public TMP_FontAsset Font => QuantumConsoleLoader.GetLoadedAsset(FontAssetPath).Cast<TMP_FontAsset>();
+        public Material PanelMaterial => QuantumConsoleLoader.GetLoadedAsset(PanelMaterialAssetPath).Cast<Material>();
 
-        public Color CommandLogColor = new Color(0, 1, 1);
-        public Color SelectedSuggestionColor = new Color(1, 1, 0.55f);
+        public string FontAssetPath = "Assets/Plugins/QFSW/Quantum Console/Source/Fonts/TMP/OfficeCodePro-Regular SDF.asset";
+        public string PanelMaterialAssetPath = "Assets/Plugins/QFSW/Quantum Console/Source/Materials/Blur Panel.mat";
+
+        public Color PanelColor = Color.white;
+        public Color CommandLogColor = Color.cyan;
+        public Color SelectedSuggestionColor = new(1, 1, 0.55f);
         public Color SuggestionColor = Color.gray;
         public Color ErrorColor = Color.red;
-        public Color WarningColor = new Color(1, 0.5f, 0);
+        public Color FatalColor = Color.red;
+        public Color WarningColor = Color.yellow;
+        public Color MessageColor = Color.white;
+        public Color DebugColor = ColorExtensions.DarkGray;
+        public Color InfoColor = ColorExtensions.DarkGray;
+
         public Color SuccessColor = Color.green;
 
-        public string TimestampFormat = "[{0}:{1}:{2}]";
+        public string TimestampFormat = "[{0:00}:{1:00}:{2:00}]";
         public string CommandLogFormat = "> {0}";
 
         public Color DefaultReturnValueColor = Color.white;
