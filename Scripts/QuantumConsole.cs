@@ -1057,6 +1057,9 @@ namespace Hikaria.QC
             DraggableUI.Setup(draggableUI, _containerRect, this, _scrollRect);
             _consoleLogText = consoleView.FindChild("View Port/Text").GetComponent<TextMeshProUGUI>();
             _consoleLogText.fontSize = 16;
+            _consoleLogText.maxVisibleLines = int.MaxValue;
+            _consoleLogText.maxVisibleWords = int.MaxValue;
+            _consoleLogText.maxVisibleCharacters = int.MaxValue;
             var popup = console.FindChild("Popup");
             _suggestionPopupRect = popup.GetComponent<RectTransform>();
             _suggestionPopupText = popup.FindChild("Text").GetComponent<TextMeshProUGUI>();
