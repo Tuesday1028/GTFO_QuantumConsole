@@ -11,6 +11,7 @@ namespace Hikaria.QC.Loader
 {
     [EnableFeatureByDefault]
     [DisallowInGameToggle]
+    [HideInModSettings]
     internal class QuantumConsoleLoader : Feature
     {
         public override string Name => "Quantum Console";
@@ -44,7 +45,7 @@ namespace Hikaria.QC.Loader
                     LoaderWrapper.ClassInjector.RegisterTypeInIl2Cpp<KeyBinderModule>();
 
 
-                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "AssetBundles/quantumconsole");
+                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets/quantumconsole");
                     AssetBundle assetBundle = AssetBundle.LoadFromFile(path);
                     string[] array = assetBundle.AllAssetNames();
                     foreach (string text in array)
