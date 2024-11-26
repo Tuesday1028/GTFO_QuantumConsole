@@ -15,5 +15,9 @@ namespace Hikaria.QC
         public string InitializationProgress => QuantumConsoleLoader.Localization.Get(7);
 
         public string InitializationComplete => QuantumConsoleLoader.Localization.Get(8);
+
+        public string SubmitButtonText => QuantumConsoleLoader.Localization.Get(9);
+        public string ClearButtonText => QuantumConsoleLoader.Localization.Get(10);
+        public string CloseButtonText => QuantumConsoleLoader.Localization.Get(11);
     }
 }

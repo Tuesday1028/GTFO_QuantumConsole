@@ -7,13 +7,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TheArchive.Core.Localization;
+using Hikaria.QC.Loader;
 
 namespace Hikaria.QC
 {
     /// <summary>
     /// Provides the UI and I/O interface for the QuantumConsoleProcessor. Invokes commands on the processor and displays the output.
     /// </summary>
-    public class QuantumConsole : MonoBehaviour
+    public class QuantumConsole : MonoBehaviour, ILocalizedTextUpdater
     {
         /// <summary>
         /// Singleton reference to the console. Only valid and set if the singleton option is enabled for the console.
@@ -42,7 +44,11 @@ namespace Hikaria.QC
         public QuantumLocalization Localization
         {
             get => _localization;
-            set => _localization = value;
+            set
+            {
+                _localization = value;
+                ApplyLocalization(value);
+            }
         }
 
         [Command("verbose-errors", "If errors caused by the Quantum Console Processor or commands should be logged in verbose mode.", MonoTargetType.Registry)]
@@ -94,6 +100,9 @@ namespace Hikaria.QC
         private TextMeshProUGUI _consoleSuggestionText;
         private TextMeshProUGUI _suggestionPopupText;
         private TextMeshProUGUI _jobCounterText;
+        private TextMeshProUGUI _submitButtonText;
+        private TextMeshProUGUI _clearButtonText;
+        private TextMeshProUGUI _closeButtonText;
 
         private static Action<string, string, LogType> _logMessageReceivedThreadedAction;
 
@@ -173,6 +182,18 @@ namespace Hikaria.QC
         private TextMeshProUGUI[] _textComponents;
 
         private readonly Type _voidTaskType = typeof(Task<>).MakeGenericType(Type.GetType("System.Threading.Tasks.VoidTaskResult"));
+
+
+        private void ApplyLocalization(QuantumLocalization localization)
+        {
+            _localization = localization;
+            if (localization != null)
+            {
+                _submitButtonText.text = localization.SubmitButtonText;
+                _clearButtonText.text = localization.ClearButtonText;
+                _closeButtonText.text = localization.CloseButtonText;
+            }
+        }
 
         /// <summary>Applies a theme to the Quantum Console.</summary>
         /// <param name="theme">The desired theme to apply.</param>
@@ -902,6 +923,7 @@ namespace Hikaria.QC
 
                     logText = $"{string.Format(format, now.Hour, now.Minute, now.Second)} {logText}";
                 }
+                logText = logText.ColorText(logLevel.GetUnityColor(_theme));
                 LogToConsole(new Log(logText, logLevel, newLine));
             }
         }
@@ -1020,7 +1042,6 @@ namespace Hikaria.QC
         private void SetupComponents()
         {
             _theme = QuantumTheme.DefaultTheme();
-
             var consoleRect = transform.FindChild("ConsoleRect");
             _containerRect = consoleRect.GetComponent<RectTransform>();
             var dynamicCanvasScaler = gameObject.AddComponent<DynamicCanvasScaler>();
@@ -1057,6 +1078,9 @@ namespace Hikaria.QC
             var zoomSizeDownButton = uiControlTab.FindChild("Zoom-").GetComponent<Button>();
             zoomSizeDownButton.onClick.AddListener(new Action(zoomUIController.ZoomDown));
             ZoomUIController.Setup(zoomUIController, zoomSizeDownButton, zoomSizeUpButton, dynamicCanvasScaler, this, uiControlTab.FindChild("Text").GetComponent<TextMeshProUGUI>());
+            _submitButtonText = ioBar.FindChild("Submit/Text").GetComponent<TextMeshProUGUI>();
+            _clearButtonText = ioBar.FindChild("Clear/Text").GetComponent<TextMeshProUGUI>();
+            _closeButtonText = ioBar.FindChild("Close/Text").GetComponent<TextMeshProUGUI>();
 
             _panels = new Image[5];
             _panels[0] = console.GetComponent<Image>();
@@ -1085,8 +1109,9 @@ namespace Hikaria.QC
 
         private void Awake()
         {
-            _logMessageReceivedThreadedAction = DebugIntercept;
+            QuantumConsoleLoader.Localization.AddTextUpdater(this);
             SetupComponents();
+            _logMessageReceivedThreadedAction = DebugIntercept;
             InitializeLogging();
         }
 
@@ -1172,9 +1197,12 @@ namespace Hikaria.QC
             _consoleLogText.richText = true;
             _consoleSuggestionText.richText = true;
 
-            ApplyTheme(_theme);
-            _keyConfig ??= new();
+            _theme ??= QuantumTheme.DefaultTheme();
+            _keyConfig ??= QuantumKeyConfig.DefaultKeyConfig();
             _localization ??= new();
+
+            ApplyTheme(_theme);
+            ApplyLocalization(_localization);
         }
 
         private void InitializeSuggestionStack()
@@ -1304,6 +1332,11 @@ namespace Hikaria.QC
         protected virtual void OnValidate()
         {
             MaxStoredLogs = _maxStoredLogs;
+        }
+
+        public void UpdateText()
+        {
+            ApplyLocalization(_localization);
         }
     }
 }

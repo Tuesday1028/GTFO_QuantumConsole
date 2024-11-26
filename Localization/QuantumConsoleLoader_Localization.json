@@ -90,6 +90,33 @@
           "English": "Q:\\>Quantum Console Processor ready",
           "Chinese": "Q:\\>量子终端处理器已就绪"
         }
+      },
+      {
+        "UntranslatedText": "Submit",
+        "Description": "SubmitButtonText",
+        "ID": 9,
+        "Languages": {
+          "English": "Submit",
+          "Chinese": "提交"
+        }
+      },
+      {
+        "UntranslatedText": "Clear",
+        "Description": "ClearButtonText",
+        "ID": 10,
+        "Languages": {
+          "English": "Clear",
+          "Chinese": "清屏"
+        }
+      },
+      {
+        "UntranslatedText": "Close",
+        "Description": "CloseButtonText",
+        "ID": 11,
+        "Languages": {
+          "English": "Close",
+          "Chinese": "关闭"
+        }
       }
     ]
   },

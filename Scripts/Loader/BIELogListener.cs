@@ -100,7 +100,7 @@ namespace Hikaria.QC.Loader
 
         private LogLevel FromBIELogLevel(BepInEx.Logging.LogLevel level)
         {
-            return level switch
+            return level.GetHighestLevel() switch
             {
                 BepInEx.Logging.LogLevel.Info => LogLevel.Info,
                 BepInEx.Logging.LogLevel.Debug => LogLevel.Debug,
