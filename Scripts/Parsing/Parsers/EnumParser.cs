@@ -1,4 +1,5 @@
-﻿using Hikaria.QC.Utilities;
+﻿using Hikaria.QC.Loader;
+using Hikaria.QC.Utilities;
 
 namespace Hikaria.QC.Parsers
 {
@@ -12,7 +13,7 @@ namespace Hikaria.QC.Parsers
             }
             catch (Exception e)
             {
-                throw new ParserInputException($"Cannot parse '{value}' to the type '{type.GetDisplayName()}'. To see the supported values, use the command `enum-info {type}`", e);
+                throw new ParserInputException(QuantumConsoleLoader.Localization.Format(54, value, type.GetDisplayName(), type), e);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Hikaria.QC.Internal;
+using Hikaria.QC.Loader;
 using Hikaria.QC.Utilities;
 using System.Reflection;
 
@@ -32,7 +33,7 @@ namespace Hikaria.QC
         {
             if (genericTypeArguments.Length != GenericParamTypes.Length)
             {
-                throw new ArgumentException("Incorrect number of generic substitution types were supplied.");
+                throw new ArgumentException(QuantumConsoleLoader.Localization.Get(69));
             }
 
             Dictionary<string, Type> substitutionTable = new Dictionary<string, Type>();
@@ -75,12 +76,12 @@ namespace Hikaria.QC
                 return baseType.MakeGenericType(typeArguments);
             }
 
-            throw new ArgumentException($"Could not construct the generic type {genericType}");
+            throw new ArgumentException(QuantumConsoleLoader.Localization.Format(70, genericType));
         }
 
         public object Invoke(object[] paramData, Type[] genericTypeArguments)
         {
-            // For MonoTargetType.Argument, need to use the first argument as the invocation target
+            // For MonoTargetType.Argument, need to use the first argument as the invocation argument
             // and then forward the rest as normal
             int paramDataStart = 0;
             int paramDataLength = paramData.Length;
@@ -104,7 +105,7 @@ namespace Hikaria.QC
                 return invokingMethod.Invoke(null, arguments);
             }
 
-            // For MonoTargetType.Argument, use the first argument as the target
+            // For MonoTargetType.Argument, use the first argument as the argument
             // Otherwise, get invocation targets like normal
             IEnumerable<object> targets = MonoTarget switch
             {
@@ -136,7 +137,7 @@ namespace Hikaria.QC
                 }
                 catch (ArgumentException)
                 {
-                    throw new ArgumentException($"Supplied generic parameters did not satisfy the generic constraints imposed by '{CommandName}'");
+                    throw new ArgumentException(QuantumConsoleLoader.Localization.Format(71, CommandName));
                 }
             }
 
@@ -252,7 +253,7 @@ namespace Hikaria.QC
             string prefix = BuildPrefix(declaringType);
             CommandName = $"{prefix}{CommandName}";
 
-            // Add a dummy parameter used for parsing the invoking target if required
+            // Add a dummy parameter used for parsing the invoking argument if required
             List<ParameterInfo> parameters = methodData.GetParameters().ToList();
             if (MonoTarget == MonoTargetType.Argument)
             {

@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using Hikaria.QC.Loader;
+using System.Runtime.CompilerServices;
 
 namespace Hikaria.QC
 {
@@ -20,7 +21,7 @@ namespace Hikaria.QC
             {
                 if (Prefix.Contains(c))
                 {
-                    string errorMessage = $"Development Processor Error: Command prefix '{Prefix}' contains the char '{c}' which is banned. Unexpected behaviour may occurr.";
+                    string errorMessage = QuantumConsoleLoader.Localization.Format(41, Prefix, c);
                     Logs.LogError(errorMessage);
 
                     Valid = false;

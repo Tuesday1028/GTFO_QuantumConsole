@@ -1,4 +1,6 @@
-﻿namespace Hikaria.QC
+﻿using Hikaria.QC.Loader;
+
+namespace Hikaria.QC
 {
     /// <summary>
     /// Handles preprocessing of console input.
@@ -40,7 +42,7 @@
                 }
                 catch (Exception e)
                 {
-                    throw new Exception($"Preprocessor {preprocessor} failed:\n{e.Message}", e);
+                    throw new Exception(QuantumConsoleLoader.Localization.Format(63, preprocessor, e.Message), e);
                 }
             }
 

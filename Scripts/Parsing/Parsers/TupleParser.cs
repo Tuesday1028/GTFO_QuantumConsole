@@ -1,4 +1,6 @@
-﻿namespace Hikaria.QC.Parsers
+﻿using Hikaria.QC.Loader;
+
+namespace Hikaria.QC.Parsers
 {
     public class TupleParser : MassGenericQcParser
     {
@@ -34,7 +36,7 @@
 
             if (elementTypes.Length != inputParts.Length)
             {
-                throw new ParserInputException($"Desired tuple type {type} has {elementTypes.Length} elements but input contained {inputParts.Length}.");
+                throw new ParserInputException(QuantumConsoleLoader.Localization.Format(57, type, elementTypes.Length, inputParts.Length));
             }
 
             object[] tupleParts = new object[inputParts.Length];

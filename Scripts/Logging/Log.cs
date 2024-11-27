@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Hikaria.QC
+﻿namespace Hikaria.QC
 {
     public readonly struct Log : ILog
     {

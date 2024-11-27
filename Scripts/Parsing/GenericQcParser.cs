@@ -1,4 +1,5 @@
-﻿using Hikaria.QC.Utilities;
+﻿using Hikaria.QC.Loader;
+using Hikaria.QC.Utilities;
 
 namespace Hikaria.QC
 {
@@ -18,12 +19,12 @@ namespace Hikaria.QC
         {
             if (!GenericType.IsGenericType)
             {
-                throw new ArgumentException($"Generic Parsers must use a generic type as their base");
+                throw new ArgumentException(QuantumConsoleLoader.Localization.Get(61));
             }
 
             if (GenericType.IsConstructedGenericType)
             {
-                throw new ArgumentException($"Generic Parsers must use an incomplete generic type as their base");
+                throw new ArgumentException(QuantumConsoleLoader.Localization.Get(62));
             }
         }
 

@@ -9,7 +9,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace QFSW.QC
+namespace Hikaria.QC
 {
     public static class DynamicCodeCommands
     {

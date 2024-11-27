@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace QFSW.QC.Extras
+namespace Hikaria.QC.Extras
 {
     internal static class EditorCommands
     {

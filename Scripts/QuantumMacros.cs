@@ -1,4 +1,6 @@
-﻿namespace Hikaria.QC
+﻿using Hikaria.QC.Loader;
+
+namespace Hikaria.QC
 {
     public static class QuantumMacros
     {
@@ -86,12 +88,12 @@
         public static void DefineMacro(string macroName, string macroExpansion)
         {
             macroName = macroName.Trim();
-            if (macroName.Contains(' ')) { throw new ArgumentException("Macro names cannot contain whitespace."); }
-            if (macroName.Contains('\n')) { throw new ArgumentException("Macro names cannot contain newlines."); }
-            if (macroName.Contains('#')) { throw new ArgumentException("Macro names cannot contain hashtags."); }
-            if (macroName == "define") { throw new ArgumentException("Macros cannot be named define."); }
-            if (macroExpansion.Contains('\n')) { throw new ArgumentException("Macro names cannot contain newlines."); }
-            if (macroExpansion.Contains($"#{macroName}")) { throw new ArgumentException("Macros cannot contain themselves within the expansion."); }
+            if (macroName.Contains(' ')) { throw new ArgumentException(QuantumConsoleLoader.Localization.Get(23)); }
+            if (macroName.Contains('\n')) { throw new ArgumentException(QuantumConsoleLoader.Localization.Get(24)); }
+            if (macroName.Contains('#')) { throw new ArgumentException(QuantumConsoleLoader.Localization.Get(25)); }
+            if (macroName == "define") { throw new ArgumentException(QuantumConsoleLoader.Localization.Get(26)); }
+            if (macroExpansion.Contains('\n')) { throw new ArgumentException(QuantumConsoleLoader.Localization.Get(27)); }
+            if (macroExpansion.Contains($"#{macroName}")) { throw new ArgumentException(QuantumConsoleLoader.Localization.Get(28)); }
 
             if (_macroTable.ContainsKey(macroName)) { _macroTable[macroName] = macroExpansion; }
             else { _macroTable.Add(macroName, macroExpansion); }
@@ -102,7 +104,7 @@
         public static void RemoveMacro(string macroName)
         {
             if (_macroTable.ContainsKey(macroName)) { _macroTable.Remove(macroName); }
-            else { throw new Exception($"Specified macro #{macroName} as it was not defined."); }
+            else { throw new Exception(QuantumConsoleLoader.Localization.Format(29, macroName)); }
         }
 
         [Command("clear-macros")]
@@ -112,8 +114,8 @@
         [Command("all-macros", "Displays all of the macros currently stored in the macro table")]
         private static string GetAllMacros()
         {
-            if (_macroTable.Count == 0) { return "Macro table is empty"; }
-            else { return $"Macro table:\n{string.Join("\n", _macroTable.Select((x) => $"#{x.Key} = {x.Value}"))}"; }
+            if (_macroTable.Count == 0) { return QuantumConsoleLoader.Localization.Get(30); }
+            else { return QuantumConsoleLoader.Localization.Format(31, string.Join("\n", _macroTable.Select((x) => $"#{x.Key} = {x.Value}"))); }
         }
 
         [Command("dump-macros", "Creates a file dump of macro table which can the be loaded to repopulate the table using load-macros")]
@@ -138,7 +140,7 @@
         {
             if (!File.Exists(filePath))
             {
-                throw new ArgumentException($"file at the specified path '{filePath}' did not exist.");
+                throw new ArgumentException(QuantumConsoleLoader.Localization.Format(32, filePath));
             }
 
             using (StreamReader macroFile = new StreamReader(filePath))
@@ -150,17 +152,17 @@
                     string[] parts = line.Split(" ".ToCharArray(), 2);
                     if (parts.Length != 2)
                     {
-                        messages.Add($"'{line}' is not a valid macro definition");
+                        messages.Add(QuantumConsoleLoader.Localization.Format(33, line));
                     }
 
                     try
                     {
                         DefineMacro(parts[0], parts[1]);
-                        messages.Add($"#{parts[0]} was successfully defined");
+                        messages.Add(QuantumConsoleLoader.Localization.Format(34, parts[0]));
                     }
                     catch (Exception e)
                     {
-                        messages.Add($"#{parts[0]} could not be defined: {e.Message}");
+                        messages.Add(QuantumConsoleLoader.Localization.Format(35, parts[0], e.Message));
                     }
                 }
 

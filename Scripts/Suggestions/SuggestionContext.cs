@@ -1,4 +1,6 @@
-﻿namespace Hikaria.QC
+﻿using Hikaria.QC.Loader;
+
+namespace Hikaria.QC
 {
     /// <summary>
     /// The context to provide suggestions for.
@@ -68,7 +70,7 @@
                 }
             }
 
-            throw new KeyNotFoundException($"No tags of type {typeof(T)} could be found.");
+            throw new KeyNotFoundException(QuantumConsoleLoader.Localization.Format(65, typeof(T)));
         }
 
         /// <summary>

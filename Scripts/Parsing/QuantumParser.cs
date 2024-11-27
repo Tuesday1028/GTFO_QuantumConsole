@@ -1,4 +1,5 @@
-﻿using Hikaria.QC.Utilities;
+﻿using Hikaria.QC.Loader;
+using Hikaria.QC.Utilities;
 using System.Collections.Concurrent;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -167,7 +168,7 @@ namespace Hikaria.QC
 
         private static readonly Dictionary<string, Type> _reverseTypeDisplayNames = _typeDisplayNames.Invert();
         private static readonly Assembly[] _loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
-        private static readonly string[] _defaultNamespaces = new string[] { "System", "System.Collections", "System.Collections.Generic", "UnityEngine", "UnityEngine.UI", "QFSW.QC" };
+        private static readonly string[] _defaultNamespaces = new string[] { "System", "System.Collections", "System.Collections.Generic", "UnityEngine", "UnityEngine.UI", "Hikaria.QC." };
         private static readonly List<string> _namespaceTable = new List<string>(_defaultNamespaces);
 
         private static readonly Regex _arrayTypeRegex = new Regex(@"^.*\[,*\]$");
@@ -209,7 +210,7 @@ namespace Hikaria.QC
             }
             else
             {
-                throw new ArgumentException($"No namespace named {namespaceName} was present in the table");
+                throw new ArgumentException(QuantumConsoleLoader.Localization.Format(42, namespaceName));
             }
         }
 
@@ -217,7 +218,7 @@ namespace Hikaria.QC
         private static string ShowNamespaces()
         {
             _namespaceTable.Sort();
-            if (_namespaceTable.Count == 0) { return "Namespace table is empty"; }
+            if (_namespaceTable.Count == 0) { return QuantumConsoleLoader.Localization.Get(43); }
             else { return string.Join("\n", _namespaceTable); }
         }
 
@@ -368,7 +369,7 @@ namespace Hikaria.QC
 
             if (throwOnError)
             {
-                throw new TypeLoadException($"No type of name '{typeName}' could be found in the specified assemblies and namespaces.");
+                throw new TypeLoadException(QuantumConsoleLoader.Localization.Format(44, typeName));
             }
 
             return null;
@@ -384,7 +385,7 @@ namespace Hikaria.QC
 
             if (throwOnError)
             {
-                throw new TypeLoadException($"No type of name '{typeName}' could be found in the specified assemblies.");
+                throw new TypeLoadException(QuantumConsoleLoader.Localization.Format(45, typeName));
             }
 
             return null;

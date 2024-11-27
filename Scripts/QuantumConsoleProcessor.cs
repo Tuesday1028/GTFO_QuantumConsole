@@ -3,6 +3,7 @@
 #endif
 
 using Hikaria.QC.Internal;
+using Hikaria.QC.Loader;
 using Hikaria.QC.Utilities;
 using System.Collections.Concurrent;
 using System.Reflection;
@@ -158,7 +159,7 @@ namespace Hikaria.QC
                         }
                         else if (loggingLevel >= LoggingLevel.Warnings)
                         {
-                            Logs.LogWarning($"Quantum Processor Warning: Could not add '{field.Name}' from {field.DeclaringType} to the table as it is an invalid delegate type.");
+                            Logs.LogWarning(QuantumConsoleLoader.Localization.Format(78, field.Name, field.DeclaringType));
                         }
                     }
                     else
@@ -185,7 +186,7 @@ namespace Hikaria.QC
 
                 if (!_parser.CanParse(paramType) && !paramType.IsGenericParameter)
                 {
-                    unsupportedReason = $"Parameter type {paramType} is not supported by the Quantum Parser.";
+                    unsupportedReason = QuantumConsoleLoader.Localization.Format(79, paramType);
                     return false;
                 }
             }
@@ -194,7 +195,7 @@ namespace Hikaria.QC
                 && !command.MethodData.IsStatic
                 && !command.MethodData.DeclaringType.IsDerivedTypeOf(typeof(MonoBehaviour)))
             {
-                unsupportedReason = $"Non static non MonoBehaviour commands are incompatible with MonoTargetType.{command.MonoTarget}.";
+                unsupportedReason = QuantumConsoleLoader.Localization.Format(80, command.MonoTarget);
                 return false;
             }
 
@@ -283,7 +284,7 @@ namespace Hikaria.QC
                 {
                     if (loggingLevel >= LoggingLevel.Warnings)
                     {
-                        Logs.LogWarning($"Quantum Processor Warning: Could not add '{commandAttribute.Alias}' to the table as it is invalid.");
+                        Logs.LogWarning(QuantumConsoleLoader.Localization.Format(81, commandAttribute.Alias));
                     }
                 }
                 else
@@ -328,8 +329,7 @@ namespace Hikaria.QC
             {
                 if (loggingLevel >= LoggingLevel.Warnings)
                 {
-                    Logs.LogWarning($"Quantum Processor Warning: Could not add '{command.CommandSignature}' from {command.MethodData.DeclaringType.GetDisplayName()} " +
-                        $"to the table as it is not supported. {reason}");
+                    Logs.LogWarning(QuantumConsoleLoader.Localization.Format(82, command.CommandSignature, command.MethodData.DeclaringType.GetDisplayName(), reason));
                 }
 
                 return false;
@@ -343,7 +343,7 @@ namespace Hikaria.QC
                 if (loggingLevel >= LoggingLevel.Warnings)
                 {
                     string fullMethodName = $"{command.MethodData.DeclaringType.FullName}.{command.MethodData.Name}";
-                    Logs.LogWarning($"Quantum Processor Warning: Could not add {fullMethodName} to the table as another method with the same alias and parameter count, {key}, already exists.");
+                    Logs.LogWarning(QuantumConsoleLoader.Localization.Format(83, fullMethodName, key));
                 }
 
                 return false;
@@ -384,7 +384,7 @@ namespace Hikaria.QC
             commandString = commandString.Trim();
             commandString = _preprocessor.Process(commandString);
 
-            if (string.IsNullOrWhiteSpace(commandString)) { throw new ArgumentException("Cannot parse an empty string."); }
+            if (string.IsNullOrWhiteSpace(commandString)) { throw new ArgumentException(QuantumConsoleLoader.Localization.Get(84)); }
             string[] commandParts = commandString.SplitScoped(' ');
             commandParts = commandParts.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
 
@@ -400,8 +400,8 @@ namespace Hikaria.QC
             if (!_commandTable.ContainsKey(keyName))
             {
                 bool overloadExists = _commandTable.Keys.Any(key => key.Contains($"{commandName}(") && _commandTable[key].CommandName == commandName);
-                if (overloadExists) { throw new ArgumentException($"No overload of '{commandName}' with {paramCount} parameters could be found."); }
-                else { throw new ArgumentException($"Command '{commandName}' could not be found."); }
+                if (overloadExists) { throw new ArgumentException(QuantumConsoleLoader.Localization.Format(85, commandName, paramCount)); }
+                else { throw new ArgumentException(QuantumConsoleLoader.Localization.Format(86, commandName)); }
             }
             CommandData command = _commandTable[keyName];
 
@@ -420,18 +420,18 @@ namespace Hikaria.QC
                 }
                 else
                 {
-                    throw new ArgumentException($"Generic command '{commandName}' requires {expectedArgCount} generic parameter{(expectedArgCount == 1 ? "" : "s")} but was supplied with {genericArgNames.Length}.");
+                    throw new ArgumentException(QuantumConsoleLoader.Localization.Format(87, commandName, expectedArgCount, expectedArgCount == 1 ? "" : "s", genericArgNames.Length));
                 }
             }
             else if (genericSignature != string.Empty)
             {
-                throw new ArgumentException($"Command '{commandName}' is not a generic command and cannot be invoked as such.");
+                throw new ArgumentException(QuantumConsoleLoader.Localization.Format(88, commandName));
             }
 
 #if !UNITY_EDITOR && ENABLE_IL2CPP && !UNITY_2022_2_OR_NEWER
             if (genericTypes.Any((Type x) => x.IsValueType))
             {
-                throw new NotSupportedException("Value types in generic commands are not supported in IL2CPP before Unity 2022.2");
+                throw new NotSupportedException(QuantumConsoleLoader.Localization.Get(89));
             }
 #endif
 

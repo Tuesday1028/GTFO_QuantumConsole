@@ -1,3 +1,5 @@
+using Hikaria.QC.Loader;
+
 namespace Hikaria.QC
 {
     /// <summary>
@@ -13,7 +15,7 @@ namespace Hikaria.QC
 
         public static readonly ResponseConfig Default = new ResponseConfig
         {
-            InputPrompt = "Enter input...",
+            InputPrompt = QuantumConsoleLoader.Localization.Get(90),
             LogInput = true
         };
     }

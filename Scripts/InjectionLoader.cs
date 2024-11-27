@@ -1,4 +1,6 @@
-﻿namespace Hikaria.QC
+﻿using Hikaria.QC.Loader;
+
+namespace Hikaria.QC
 {
     /// <summary>
     /// Prevents the type from being loaded by an InjectionLoader
@@ -83,7 +85,7 @@
                 }
                 catch (MissingMethodException)
                 {
-                    Logs.LogError($"Could not load {typeof(T)} {type} as it is missing a public parameterless constructor.");
+                    Logs.LogError(QuantumConsoleLoader.Localization.Format(72, typeof(T), type));
                 }
                 catch (Exception e)
                 {

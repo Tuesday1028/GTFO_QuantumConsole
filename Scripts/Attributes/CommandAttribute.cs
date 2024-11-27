@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using Hikaria.QC.Loader;
+using System.Runtime.CompilerServices;
 
 namespace Hikaria.QC
 {
@@ -26,7 +27,7 @@ namespace Hikaria.QC
             {
                 if (Alias.Contains(_bannedAliasChars[i]))
                 {
-                    string errorMessage = $"Development Processor Error: Command with alias '{Alias}' contains the char '{_bannedAliasChars[i]}' which is banned. Unexpected behaviour may occur.";
+                    string errorMessage = QuantumConsoleLoader.Localization.Format(40, Alias, _bannedAliasChars[i]);
                     Logs.LogError(errorMessage);
                     Valid = false;
                     throw new ArgumentException(errorMessage, nameof(aliasOverride));

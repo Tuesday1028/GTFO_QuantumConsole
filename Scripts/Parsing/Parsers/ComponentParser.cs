@@ -1,4 +1,5 @@
-﻿using Hikaria.QC.Utilities;
+﻿using Hikaria.QC.Loader;
+using Hikaria.QC.Utilities;
 using Il2CppInterop.Runtime;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace Hikaria.QC.Parsers
 
             if (!objComponent)
             {
-                throw new ParserInputException($"No component on the object '{value}' of type {type.GetDisplayName()} existed.");
+                throw new ParserInputException(QuantumConsoleLoader.Localization.Format(53, value, type.GetDisplayName()));
             }
 
             return objComponent;

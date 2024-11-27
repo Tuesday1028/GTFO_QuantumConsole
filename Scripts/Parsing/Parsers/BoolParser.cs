@@ -1,4 +1,6 @@
-﻿namespace Hikaria.QC.Parsers
+﻿using Hikaria.QC.Loader;
+
+namespace Hikaria.QC.Parsers
 {
     public class BoolParser : BasicCachedQcParser<bool>
     {
@@ -15,7 +17,7 @@
                 case "off": return false;
                 case "0": return false;
                 case "no": return false;
-                default: throw new ParserInputException($"Cannot parse '{value}' to a bool.");
+                default: throw new ParserInputException(QuantumConsoleLoader.Localization.Format(46, value));
             }
         }
     }

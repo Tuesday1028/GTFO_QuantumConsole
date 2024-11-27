@@ -1,4 +1,5 @@
 ﻿using Hikaria.QC.Containers;
+using Hikaria.QC.Loader;
 using Hikaria.QC.Pooling;
 using System.Text;
 
@@ -156,7 +157,7 @@ namespace Hikaria.QC
         {
             if (leftScopers.Count != rightScopers.Count)
             {
-                throw new ArgumentException("There must be an equal number of corresponding left and right scopers");
+                throw new ArgumentException(QuantumConsoleLoader.Localization.Get(68));
             }
 
             if (string.IsNullOrWhiteSpace(input))
@@ -398,7 +399,7 @@ namespace Hikaria.QC
         {
             if (leftScopers.Count != rightScopers.Count)
             {
-                throw new ArgumentException("There must be an equal number of corresponding left and right scopers");
+                throw new ArgumentException(QuantumConsoleLoader.Localization.Get(68));
             }
 
             int[] scopes = new int[leftScopers.Count];

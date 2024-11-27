@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using Hikaria.QC.Loader;
+using System.Reflection;
 using UnityEngine;
 
 namespace Hikaria.QC.Parsers
@@ -45,12 +46,7 @@ namespace Hikaria.QC.Parsers
             }
             catch (FormatException e)
             {
-                throw new ParserInputException($"{e.Message}\nThe format must be either of:" +
-                                                          $"\n   - R,G,B" +
-                                                          $"\n   - R,G,B,A" +
-                                                          $"\n   - 0xRRGGBB" +
-                                                          $"\n   - 0xRRGGBBAA" +
-                                                          $"\n   - A preset color such as 'red'", e);
+                throw new ParserInputException(QuantumConsoleLoader.Localization.Format(47, e.Message), e);
             }
         }
 
@@ -60,12 +56,12 @@ namespace Hikaria.QC.Parsers
             Color parsedColor = Color.white;
             int i = 0;
 
-            if (colorParts.Length < 3 || colorParts.Length > 4) { throw new FormatException($"Cannot parse '{value}' as a Color."); }
+            if (colorParts.Length < 3 || colorParts.Length > 4) { throw new FormatException(QuantumConsoleLoader.Localization.Get(48)); }
 
             float ParsePart(string part)
             {
                 float val = float.Parse(part);
-                if (val < 0 || val > 1) { throw new FormatException($"{val} falls outside of the valid [0,1] range for a component of a Color."); }
+                if (val < 0 || val > 1) { throw new FormatException(QuantumConsoleLoader.Localization.Format(49, val)); }
                 return val;
             }
 
@@ -80,7 +76,7 @@ namespace Hikaria.QC.Parsers
             }
             catch (FormatException)
             {
-                throw new FormatException($"Cannot parse '{colorParts[i]}' as part of a Color, it must be numerical and in the valid range [0,1].");
+                throw new FormatException(QuantumConsoleLoader.Localization.Format(50, colorParts[i]));
             }
         }
 
@@ -89,7 +85,7 @@ namespace Hikaria.QC.Parsers
             int digitCount = value.Length - 2;
             if (digitCount != 6 && digitCount != 8)
             {
-                throw new FormatException("Hex colors must contain either 6 or 8 hex digits.");
+                throw new FormatException(QuantumConsoleLoader.Localization.Get(51));
             }
 
             Color parsedColor = Color.white;
@@ -107,7 +103,7 @@ namespace Hikaria.QC.Parsers
             }
             catch (FormatException)
             {
-                throw new FormatException($"Cannot parse '{value.Substring(2 * (1 + i), 2)}' as part of a Color as it was invalid hex.");
+                throw new FormatException(QuantumConsoleLoader.Localization.Format(52, value.Substring(2 * (1 + i), 2)));
             }
         }
     }

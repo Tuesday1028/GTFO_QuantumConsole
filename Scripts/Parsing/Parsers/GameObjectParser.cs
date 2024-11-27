@@ -1,4 +1,5 @@
-﻿using Hikaria.QC.Utilities;
+﻿using Hikaria.QC.Loader;
+using Hikaria.QC.Utilities;
 using UnityEngine;
 
 namespace Hikaria.QC.Parsers
@@ -12,7 +13,7 @@ namespace Hikaria.QC.Parsers
 
             if (!obj)
             {
-                throw new ParserInputException($"Could not find GameObject of name {value}.");
+                throw new ParserInputException(QuantumConsoleLoader.Localization.Format(55, value));
             }
 
             return obj;

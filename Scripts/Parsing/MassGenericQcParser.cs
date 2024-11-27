@@ -1,4 +1,6 @@
-﻿namespace Hikaria.QC
+﻿using Hikaria.QC.Loader;
+
+namespace Hikaria.QC
 {
     /// <summary>
     /// Parser for all types that are generic constructions of a several types.
@@ -18,12 +20,12 @@
             {
                 if (!type.IsGenericType)
                 {
-                    throw new ArgumentException($"Generic Parsers must use a generic type as their base");
+                    throw new ArgumentException(QuantumConsoleLoader.Localization.Get(61));
                 }
 
                 if (type.IsConstructedGenericType)
                 {
-                    throw new ArgumentException($"Generic Parsers must use an incomplete generic type as their base");
+                    throw new ArgumentException(QuantumConsoleLoader.Localization.Get(62));
                 }
             }
         }

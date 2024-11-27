@@ -1,4 +1,6 @@
 ﻿using Hikaria.QC.Comparators;
+using Hikaria.QC.Containers;
+using Hikaria.QC.Loader;
 using Hikaria.QC.Utilities;
 using Il2CppInterop.Runtime;
 using System.Reflection;
@@ -24,40 +26,40 @@ namespace Hikaria.QC
             switch (method)
             {
                 case MonoTargetType.Single:
-                {
-                    Object target = Object.FindObjectOfType(Il2CppType.From(classType));
-                    return target == null ? Enumerable.Empty<object>() : target.Yield();
-                }
-                case MonoTargetType.SingleInactive:
-                {
-                    return WrapSingleCached(classType, method, type =>
                     {
-                        return Resources.FindObjectsOfTypeAll(Il2CppType.From(type))
-                            .FirstOrDefault(x => !x.hideFlags.HasFlag(HideFlags.HideInHierarchy));
-                    });
-                }
+                        Object target = Object.FindObjectOfType(Il2CppType.From(classType));
+                        return target == null ? Enumerable.Empty<object>() : target.Yield();
+                    }
+                case MonoTargetType.SingleInactive:
+                    {
+                        return WrapSingleCached(classType, method, type =>
+                        {
+                            return Resources.FindObjectsOfTypeAll(Il2CppType.From(type))
+                                .FirstOrDefault(x => !x.hideFlags.HasFlag(HideFlags.HideInHierarchy));
+                        });
+                    }
                 case MonoTargetType.All:
-                {
-                    return Object.FindObjectsOfType(Il2CppType.From(classType))
-                        .OrderBy(x => x.name, new AlphanumComparator());
-                }
+                    {
+                        return Object.FindObjectsOfType(Il2CppType.From(classType))
+                            .OrderBy(x => x.name, new AlphanumComparator());
+                    }
                 case MonoTargetType.AllInactive:
-                {
-                    return Resources.FindObjectsOfTypeAll(Il2CppType.From(classType))
-                        .Where(x => !x.hideFlags.HasFlag(HideFlags.HideInHierarchy))
-                        .OrderBy(x => x.name, new AlphanumComparator());
-                }
+                    {
+                        return Resources.FindObjectsOfTypeAll(Il2CppType.From(classType))
+                            .Where(x => !x.hideFlags.HasFlag(HideFlags.HideInHierarchy))
+                            .OrderBy(x => x.name, new AlphanumComparator());
+                    }
                 case MonoTargetType.Registry:
-                {
-                    return QuantumRegistry.GetRegistryContents(classType);
-                }
+                    {
+                        return QuantumRegistry.GetRegistryContents(classType);
+                    }
                 case MonoTargetType.Singleton:
-                {
-                    return GetSingletonInstance(classType).Yield();
-                }
+                    {
+                        return GetSingletonInstance(classType).Yield();
+                    }
                 default:
                 {
-                    throw new ArgumentException($"Unsupported MonoTargetType {method}");
+                    throw new ArgumentException(QuantumConsoleLoader.Localization.Format(73, method));
                 }
             }
         }
@@ -104,7 +106,7 @@ namespace Hikaria.QC
             if (invokeCount == 0)
             {
                 string typeName = invokingMethod.DeclaringType.GetDisplayName();
-                throw new Exception($"Could not invoke the command because no objects of type {typeName} could be found.");
+                throw new Exception(QuantumConsoleLoader.Localization.Format(74, typeName));
             }
 
             return null;
@@ -115,7 +117,7 @@ namespace Hikaria.QC
             switch (invocationCount)
             {
                 case 0:
-                    throw new Exception("No targets could be found");
+                    throw new Exception(QuantumConsoleLoader.Localization.Get(75));
                 case 1:
                 {
                     string name;
@@ -128,10 +130,10 @@ namespace Hikaria.QC
                         name = lastTarget?.ToString();
                     }
 
-                    return $"> Invoked on {name}";
+                    return QuantumConsoleLoader.Localization.Format(76, name);
                 }
                 default:
-                    return $"> Invoked on {invocationCount} targets";
+                    return QuantumConsoleLoader.Localization.Format(77, invocationCount);
             }
         }
 
@@ -148,11 +150,11 @@ namespace Hikaria.QC
             return target;
         }
 
-        private static Component CreateCommandSingletonInstance(Type classType)
+        private static Object CreateCommandSingletonInstance(Type classType)
         {
             GameObject obj = new GameObject($"{classType}Singleton");
             Object.DontDestroyOnLoad(obj);
-            return obj.AddComponent(Il2CppType.From(classType));
+            return obj.AddComponent(Il2CppType.From(classType, true)).Cast<Object>();
         }
     }
 }

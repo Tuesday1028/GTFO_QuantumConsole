@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Hikaria.QC.Loader;
+using UnityEngine;
 
 namespace Hikaria.QC.Parsers
 {
@@ -11,7 +12,7 @@ namespace Hikaria.QC.Parsers
 
             if (vectorParts.Length < 2 || vectorParts.Length > 4)
             {
-                throw new ParserInputException($"Cannot parse '{value}' as a vector, the format must be either x,y x,y,z or x,y,z,w.");
+                throw new ParserInputException(QuantumConsoleLoader.Localization.Format(60, value));
             }
 
             for (int i = 0; i < vectorParts.Length; i++)

@@ -13,9 +13,9 @@ namespace Hikaria.QC.ScanRules
                     "System", "Unity", "Microsoft", "Mono.", "mscorlib", "NSubstitute", "JetBrains", "nunit.",
                     "GeNa."
 #if QC_DISABLE_BUILTIN_ALL
-                    , "QFSW.QC"
+                    , "Hikaria.QC."
 #elif QC_DISABLE_BUILTIN_EXTRA
-                    , "QFSW.QC.Extra"
+                    , "Hikaria.QC.Extra"
 #endif
                 };
 
