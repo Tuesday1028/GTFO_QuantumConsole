@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 using Hikaria.QC.Utilities;
 using System.Globalization;
 
@@ -38,7 +38,7 @@ namespace Hikaria.QC.Parsers
             }
             catch (FormatException e)
             {
-                throw new ParserInputException(QuantumConsoleLoader.Localization.Format(56, value, type.GetDisplayName()), e);
+                throw new ParserInputException(QuantumConsoleBootstrap.Localization.Format(56, value, type.GetDisplayName()), e);
             }
         }
     }

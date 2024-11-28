@@ -1,6 +1,5 @@
 ﻿using Hikaria.QC.Comparators;
-using Hikaria.QC.Containers;
-using Hikaria.QC.Loader;
+using Hikaria.QC.Bootstrap;
 using Hikaria.QC.Utilities;
 using Il2CppInterop.Runtime;
 using System.Reflection;
@@ -59,7 +58,7 @@ namespace Hikaria.QC
                     }
                 default:
                 {
-                    throw new ArgumentException(QuantumConsoleLoader.Localization.Format(73, method));
+                    throw new ArgumentException(QuantumConsoleBootstrap.Localization.Format(73, method));
                 }
             }
         }
@@ -106,7 +105,7 @@ namespace Hikaria.QC
             if (invokeCount == 0)
             {
                 string typeName = invokingMethod.DeclaringType.GetDisplayName();
-                throw new Exception(QuantumConsoleLoader.Localization.Format(74, typeName));
+                throw new Exception(QuantumConsoleBootstrap.Localization.Format(74, typeName));
             }
 
             return null;
@@ -117,7 +116,7 @@ namespace Hikaria.QC
             switch (invocationCount)
             {
                 case 0:
-                    throw new Exception(QuantumConsoleLoader.Localization.Get(75));
+                    throw new Exception(QuantumConsoleBootstrap.Localization.Get(75));
                 case 1:
                 {
                     string name;
@@ -130,10 +129,10 @@ namespace Hikaria.QC
                         name = lastTarget?.ToString();
                     }
 
-                    return QuantumConsoleLoader.Localization.Format(76, name);
+                    return QuantumConsoleBootstrap.Localization.Format(76, name);
                 }
                 default:
-                    return QuantumConsoleLoader.Localization.Format(77, invocationCount);
+                    return QuantumConsoleBootstrap.Localization.Format(77, invocationCount);
             }
         }
 
@@ -150,8 +149,14 @@ namespace Hikaria.QC
             return target;
         }
 
-        private static Component CreateCommandSingletonInstance(Type classType)
+        private static object CreateCommandSingletonInstance(Type classType)
         {
+            var il2cppType = Il2CppType.From(classType);
+            if (il2cppType == null)
+            {
+                var singlenton = Activator.CreateInstance(classType);
+                return singlenton;
+            }
             GameObject obj = new GameObject($"{classType}Singleton");
             Object.DontDestroyOnLoad(obj);
             return obj.AddComponent(Il2CppType.From(classType, true)).Cast<Component>();

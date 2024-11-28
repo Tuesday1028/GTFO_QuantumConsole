@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 using Hikaria.QC.Utilities;
 using System.Collections;
 using TMPro;
@@ -44,8 +44,8 @@ namespace Hikaria.QC
             return quantumTheme;
         }
 
-        public TMP_FontAsset Font => QuantumConsoleLoader.GetLoadedAsset(FontAssetPath).Cast<TMP_FontAsset>();
-        public Material PanelMaterial => QuantumConsoleLoader.GetLoadedAsset(PanelMaterialAssetPath).Cast<Material>();
+        public TMP_FontAsset Font => QuantumConsoleBootstrap.GetLoadedAsset(FontAssetPath).Cast<TMP_FontAsset>();
+        public Material PanelMaterial => QuantumConsoleBootstrap.GetLoadedAsset(PanelMaterialAssetPath).Cast<Material>();
 
         public string FontAssetPath = "Assets/Plugins/QFSW/Quantum Console/Source/Fonts/TMP/OfficeCodePro-Regular SDF.asset";
         public string PanelMaterialAssetPath = "Assets/Plugins/QFSW/Quantum Console/Source/Materials/Blur Panel.mat";

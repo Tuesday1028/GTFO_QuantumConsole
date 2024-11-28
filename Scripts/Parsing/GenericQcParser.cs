@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 using Hikaria.QC.Utilities;
 
 namespace Hikaria.QC
@@ -19,12 +19,12 @@ namespace Hikaria.QC
         {
             if (!GenericType.IsGenericType)
             {
-                throw new ArgumentException(QuantumConsoleLoader.Localization.Get(61));
+                throw new ArgumentException(QuantumConsoleBootstrap.Localization.Get(61));
             }
 
             if (GenericType.IsConstructedGenericType)
             {
-                throw new ArgumentException(QuantumConsoleLoader.Localization.Get(62));
+                throw new ArgumentException(QuantumConsoleBootstrap.Localization.Get(62));
             }
         }
 

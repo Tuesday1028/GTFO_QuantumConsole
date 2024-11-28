@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 using System.Reflection;
 using UnityEngine;
 
@@ -46,7 +46,7 @@ namespace Hikaria.QC.Parsers
             }
             catch (FormatException e)
             {
-                throw new ParserInputException(QuantumConsoleLoader.Localization.Format(47, e.Message), e);
+                throw new ParserInputException(QuantumConsoleBootstrap.Localization.Format(47, e.Message), e);
             }
         }
 
@@ -56,12 +56,12 @@ namespace Hikaria.QC.Parsers
             Color parsedColor = Color.white;
             int i = 0;
 
-            if (colorParts.Length < 3 || colorParts.Length > 4) { throw new FormatException(QuantumConsoleLoader.Localization.Get(48)); }
+            if (colorParts.Length < 3 || colorParts.Length > 4) { throw new FormatException(QuantumConsoleBootstrap.Localization.Get(48)); }
 
             float ParsePart(string part)
             {
                 float val = float.Parse(part);
-                if (val < 0 || val > 1) { throw new FormatException(QuantumConsoleLoader.Localization.Format(49, val)); }
+                if (val < 0 || val > 1) { throw new FormatException(QuantumConsoleBootstrap.Localization.Format(49, val)); }
                 return val;
             }
 
@@ -76,7 +76,7 @@ namespace Hikaria.QC.Parsers
             }
             catch (FormatException)
             {
-                throw new FormatException(QuantumConsoleLoader.Localization.Format(50, colorParts[i]));
+                throw new FormatException(QuantumConsoleBootstrap.Localization.Format(50, colorParts[i]));
             }
         }
 
@@ -85,7 +85,7 @@ namespace Hikaria.QC.Parsers
             int digitCount = value.Length - 2;
             if (digitCount != 6 && digitCount != 8)
             {
-                throw new FormatException(QuantumConsoleLoader.Localization.Get(51));
+                throw new FormatException(QuantumConsoleBootstrap.Localization.Get(51));
             }
 
             Color parsedColor = Color.white;
@@ -103,7 +103,7 @@ namespace Hikaria.QC.Parsers
             }
             catch (FormatException)
             {
-                throw new FormatException(QuantumConsoleLoader.Localization.Format(52, value.Substring(2 * (1 + i), 2)));
+                throw new FormatException(QuantumConsoleBootstrap.Localization.Format(52, value.Substring(2 * (1 + i), 2)));
             }
         }
     }

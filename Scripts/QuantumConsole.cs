@@ -1,14 +1,14 @@
-using Hikaria.QC.Pooling;
+using Hikaria.QC.Bootstrap;
 using Hikaria.QC.Logging;
+using Hikaria.QC.Pooling;
 using Hikaria.QC.UI;
 using Hikaria.QC.Utilities;
 using System.Text;
+using TheArchive.Core.Localization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using TheArchive.Core.Localization;
-using Hikaria.QC.Loader;
 
 namespace Hikaria.QC
 {
@@ -54,13 +54,13 @@ namespace Hikaria.QC
         [Command("verbose-errors", "If errors caused by the Quantum Console Processor or commands should be logged in verbose mode.", MonoTargetType.Registry)]
         private bool _verboseErrors = false;
 
-        [Command("verbose-logging", "The minimum log severity required to use verbose logging.", MonoTargetType.Registry)]
-        private LoggingThreshold _verboseLogging = LoggingThreshold.Never;
+        [Command("verbose-logging", "Log levels required to use verbose logging.", MonoTargetType.Registry)]
+        private LogLevel _verboseLogging = LogLevel.None;
 
-        [Command("logging-level", "The minimum log severity required to intercept and display the log.", MonoTargetType.Registry)]
-        private LoggingThreshold _loggingLevel = LoggingThreshold.Always;
+        [Command("logging-level", "Log levels required to intercept and display the log.", MonoTargetType.Registry)]
+        private LogLevel _loggingLevel = LogLevel.All & ~LogLevel.Warning;
 
-        private LoggingThreshold _openOnLogLevel = LoggingThreshold.Never;
+        private LogLevel _openOnLogLevel = LogLevel.None;
         private bool _interceptDebugLogger = true;
         private bool _interceptWhilstInactive = true;
         private bool _prependTimestamps = true;
@@ -485,7 +485,7 @@ namespace Hikaria.QC
         {
             if (!_suggestionStack.SetSuggestionIndex(suggestionIndex))
             {
-                throw new ArgumentException($"Cannot set suggestion to index {suggestionIndex}.");
+                throw new ArgumentException(QuantumConsoleBootstrap.Localization.Format(92, suggestionIndex));
             }
 
             OverrideConsoleInput(_suggestionStack.GetCompletion());
@@ -755,9 +755,8 @@ namespace Hikaria.QC
             while (_logQueue.TryDequeue(out ILog log))
             {
                 AppendLog(log);
-                LoggingThreshold severity = log.Level.ToLoggingThreshold();
                 scroll |= _autoScroll == AutoScrollOptions.Always;
-                open |= severity <= _openOnLogLevel;
+                open |= _openOnLogLevel.HasFlag(log.Level.GetHighestLevel());
             }
 
             if (scroll) { ScrollConsoleToLatest(); }
@@ -944,12 +943,29 @@ namespace Hikaria.QC
             }
         }
 
+        private float _prePos = 0f;
+        private float _preSize = 0f;
+        private Vector2 _anchoredPos = Vector2.zero;
         private void FlushToConsoleText()
         {
             if (_consoleRequiresFlush)
             {
                 _consoleRequiresFlush = false;
-                _consoleLogText.text = _logStorage.GetLogString();
+                if (_scrollRect.verticalNormalizedPosition == 0f)
+                {
+                    _consoleLogText.text = _logStorage.GetLogString();
+                }
+                else
+                {
+                    _prePos = _scrollRect.content.anchoredPosition.y;
+                    _preSize = _scrollRect.content.sizeDelta.y;
+
+                    _consoleLogText.text = _logStorage.GetLogString();
+                    LayoutRebuilder.ForceRebuildLayoutImmediate(_scrollRect.content);
+
+                    _anchoredPos.Set(0f, _prePos + _preSize - _scrollRect.content.sizeDelta.y);
+                    _scrollRect.SetContentAnchoredPosition(_anchoredPos);
+                }
             }
         }
 
@@ -1056,7 +1072,7 @@ namespace Hikaria.QC
             var draggableUI = consoleView.gameObject.AddComponent<DraggableUI>();
             DraggableUI.Setup(draggableUI, _containerRect, this, _scrollRect);
             _consoleLogText = consoleView.FindChild("View Port/Text").GetComponent<TextMeshProUGUI>();
-            _consoleLogText.fontSize = 16;
+            _consoleLogText.fontSize = 14;
             _consoleLogText.maxVisibleLines = int.MaxValue;
             _consoleLogText.maxVisibleWords = int.MaxValue;
             _consoleLogText.maxVisibleCharacters = int.MaxValue;
@@ -1112,7 +1128,7 @@ namespace Hikaria.QC
 
         private void Awake()
         {
-            QuantumConsoleLoader.Localization.AddTextUpdater(this);
+            QuantumConsoleBootstrap.Localization.AddTextUpdater(this);
             SetupComponents();
             _logMessageReceivedThreadedAction = DebugIntercept;
             InitializeLogging();
@@ -1279,9 +1295,9 @@ namespace Hikaria.QC
 
         private void DebugIntercept(string condition, string stackTrace, LogType type)
         {
-            if (_interceptDebugLogger && (IsActive || _interceptWhilstInactive) && _loggingLevel >= type.ToLoggingThreshold())
+            if (_interceptDebugLogger && (IsActive || _interceptWhilstInactive) && _loggingLevel.HasFlag(type.ToLogLevel()))
             {
-                bool appendStackTrace = _verboseLogging >= type.ToLoggingThreshold();
+                bool appendStackTrace = _verboseLogging.HasFlag(type.ToLogLevel());
                 ILog log = ConstructDebugLog(condition, stackTrace, type, _prependTimestamps, appendStackTrace);
                 LogToConsoleAsync(log);
             }

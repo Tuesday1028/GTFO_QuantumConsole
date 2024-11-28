@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 
 namespace Hikaria.QC
 {
@@ -85,7 +85,7 @@ namespace Hikaria.QC
                 }
                 catch (MissingMethodException)
                 {
-                    Logs.LogError(QuantumConsoleLoader.Localization.Format(72, typeof(T), type));
+                    Logs.LogError(QuantumConsoleBootstrap.Localization.Format(72, typeof(T), type));
                 }
                 catch (Exception e)
                 {

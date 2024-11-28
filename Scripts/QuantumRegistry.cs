@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 using Hikaria.QC.Utilities;
 
 namespace Hikaria.QC
@@ -33,14 +33,14 @@ namespace Hikaria.QC
         /// <param name="obj">The object to add to the registry.</param>
         public static void RegisterObject(Type type, object obj)
         {
-            if (!type.IsClass) { throw new Exception(QuantumConsoleLoader.Localization.Get(36)); }
+            if (!type.IsClass) { throw new Exception(QuantumConsoleBootstrap.Localization.Get(36)); }
             lock (_objectRegistry)
             {
                 if (_objectRegistry.ContainsKey(type))
                 {
                     if (_objectRegistry[type].Contains(obj))
                     {
-                        throw new ArgumentException(QuantumConsoleLoader.Localization.Format(37, obj, type.GetDisplayName()));
+                        throw new ArgumentException(QuantumConsoleBootstrap.Localization.Format(37, obj, type.GetDisplayName()));
                     }
 
                     _objectRegistry[type].Add(obj);
@@ -63,7 +63,7 @@ namespace Hikaria.QC
         /// <param name="obj">The object to remove from the registry.</param>
         public static void DeregisterObject(Type type, object obj)
         {
-            if (!type.IsClass) { throw new Exception(QuantumConsoleLoader.Localization.Get(36)); }
+            if (!type.IsClass) { throw new Exception(QuantumConsoleBootstrap.Localization.Get(36)); }
             lock (_objectRegistry)
             {
                 if (_objectRegistry.ContainsKey(type) && _objectRegistry[type].Contains(obj))
@@ -72,7 +72,7 @@ namespace Hikaria.QC
                 }
                 else
                 {
-                    throw new ArgumentException(QuantumConsoleLoader.Localization.Format(38, obj, type.GetDisplayName()));
+                    throw new ArgumentException(QuantumConsoleBootstrap.Localization.Format(38, obj, type.GetDisplayName()));
                 }
             }
         }
@@ -106,7 +106,7 @@ namespace Hikaria.QC
         /// <param name="type">The registry to query.</param>
         public static IEnumerable<object> GetRegistryContents(Type type)
         {
-            if (!type.IsClass) { throw new Exception("Registry may only contain class types"); }
+            if (!type.IsClass) { throw new Exception(QuantumConsoleBootstrap.Localization.Get(91)); }
             lock (_objectRegistry)
             {
                 if (_objectRegistry.ContainsKey(type))
@@ -132,7 +132,7 @@ namespace Hikaria.QC
         /// <param name="type">The registry to clear.</param>
         public static void ClearRegistryContents(Type type)
         {
-            if (!type.IsClass) { throw new Exception(QuantumConsoleLoader.Localization.Get(36)); }
+            if (!type.IsClass) { throw new Exception(QuantumConsoleBootstrap.Localization.Get(36)); }
             lock (_objectRegistry)
             {
                 if (_objectRegistry.ContainsKey(type))
@@ -147,7 +147,7 @@ namespace Hikaria.QC
         {
             if (GetRegistrySize<T>() <= 0) 
             { 
-                return QuantumConsoleLoader.Localization.Format(39, typeof(T).GetDisplayName()).Yield();
+                return QuantumConsoleBootstrap.Localization.Format(39, typeof(T).GetDisplayName()).Yield();
             }
 
             return GetRegistryContents<T>();

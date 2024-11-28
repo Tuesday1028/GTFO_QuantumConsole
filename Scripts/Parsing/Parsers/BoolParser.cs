@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 
 namespace Hikaria.QC.Parsers
 {
@@ -17,7 +17,7 @@ namespace Hikaria.QC.Parsers
                 case "off": return false;
                 case "0": return false;
                 case "no": return false;
-                default: throw new ParserInputException(QuantumConsoleLoader.Localization.Format(46, value));
+                default: throw new ParserInputException(QuantumConsoleBootstrap.Localization.Format(46, value));
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 
 namespace Hikaria.QC.Parsers
 {
@@ -36,7 +36,7 @@ namespace Hikaria.QC.Parsers
 
             if (elementTypes.Length != inputParts.Length)
             {
-                throw new ParserInputException(QuantumConsoleLoader.Localization.Format(57, type, elementTypes.Length, inputParts.Length));
+                throw new ParserInputException(QuantumConsoleBootstrap.Localization.Format(57, type, elementTypes.Length, inputParts.Length));
             }
 
             object[] tupleParts = new object[inputParts.Length];

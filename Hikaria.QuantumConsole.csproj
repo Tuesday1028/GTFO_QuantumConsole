@@ -78,8 +78,4 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Localization\" />
-  </ItemGroup>
-
 </Project>

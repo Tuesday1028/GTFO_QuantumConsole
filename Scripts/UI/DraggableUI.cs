@@ -90,6 +90,7 @@ namespace Hikaria.QC.UI
 
         public void OnScroll(PointerEventData eventData)
         {
+            _scrollRect.velocity = Vector3.zero;
             _scrollRect.OnScroll(eventData);
         }
 

@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 using UnityEngine;
 
 namespace Hikaria.QC.Parsers
@@ -12,7 +12,7 @@ namespace Hikaria.QC.Parsers
 
             if (vectorParts.Length < 2 || vectorParts.Length > 3)
             {
-                throw new ParserInputException(QuantumConsoleLoader.Localization.Format(58, value));
+                throw new ParserInputException(QuantumConsoleBootstrap.Localization.Format(58, value));
             }
 
             int i = 0;
@@ -27,7 +27,7 @@ namespace Hikaria.QC.Parsers
             }
             catch
             {
-                throw new ParserInputException(QuantumConsoleLoader.Localization.Format(59, vectorParts[i]));
+                throw new ParserInputException(QuantumConsoleBootstrap.Localization.Format(59, vectorParts[i]));
             }
         }
     }

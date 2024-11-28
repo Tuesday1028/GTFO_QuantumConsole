@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 using Hikaria.QC.Utilities;
 using System.Collections.Concurrent;
 using System.Reflection;
@@ -168,7 +168,7 @@ namespace Hikaria.QC
 
         private static readonly Dictionary<string, Type> _reverseTypeDisplayNames = _typeDisplayNames.Invert();
         private static readonly Assembly[] _loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
-        private static readonly string[] _defaultNamespaces = new string[] { "System", "System.Collections", "System.Collections.Generic", "UnityEngine", "UnityEngine.UI", "Hikaria.QC." };
+        private static readonly string[] _defaultNamespaces = new string[] { "System", "System.Collections", "System.Collections.Generic", "UnityEngine", "UnityEngine.UI", "Hikaria.QC" };
         private static readonly List<string> _namespaceTable = new List<string>(_defaultNamespaces);
 
         private static readonly Regex _arrayTypeRegex = new Regex(@"^.*\[,*\]$");
@@ -210,7 +210,7 @@ namespace Hikaria.QC
             }
             else
             {
-                throw new ArgumentException(QuantumConsoleLoader.Localization.Format(42, namespaceName));
+                throw new ArgumentException(QuantumConsoleBootstrap.Localization.Format(42, namespaceName));
             }
         }
 
@@ -218,7 +218,7 @@ namespace Hikaria.QC
         private static string ShowNamespaces()
         {
             _namespaceTable.Sort();
-            if (_namespaceTable.Count == 0) { return QuantumConsoleLoader.Localization.Get(43); }
+            if (_namespaceTable.Count == 0) { return QuantumConsoleBootstrap.Localization.Get(43); }
             else { return string.Join("\n", _namespaceTable); }
         }
 
@@ -369,7 +369,7 @@ namespace Hikaria.QC
 
             if (throwOnError)
             {
-                throw new TypeLoadException(QuantumConsoleLoader.Localization.Format(44, typeName));
+                throw new TypeLoadException(QuantumConsoleBootstrap.Localization.Format(44, typeName));
             }
 
             return null;
@@ -385,7 +385,7 @@ namespace Hikaria.QC
 
             if (throwOnError)
             {
-                throw new TypeLoadException(QuantumConsoleLoader.Localization.Format(45, typeName));
+                throw new TypeLoadException(QuantumConsoleBootstrap.Localization.Format(45, typeName));
             }
 
             return null;

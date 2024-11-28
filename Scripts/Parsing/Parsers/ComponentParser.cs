@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 using Hikaria.QC.Utilities;
 using Il2CppInterop.Runtime;
 using UnityEngine;
@@ -14,7 +14,7 @@ namespace Hikaria.QC.Parsers
 
             if (!objComponent)
             {
-                throw new ParserInputException(QuantumConsoleLoader.Localization.Format(53, value, type.GetDisplayName()));
+                throw new ParserInputException(QuantumConsoleBootstrap.Localization.Format(53, value, type.GetDisplayName()));
             }
 
             return objComponent;

@@ -1,4 +1,4 @@
-using Hikaria.QC.Loader;
+using Hikaria.QC.Bootstrap;
 
 namespace Hikaria.QC
 {
@@ -15,7 +15,7 @@ namespace Hikaria.QC
 
         public static readonly ResponseConfig Default = new ResponseConfig
         {
-            InputPrompt = QuantumConsoleLoader.Localization.Get(90),
+            InputPrompt = QuantumConsoleBootstrap.Localization.Get(90),
             LogInput = true
         };
     }

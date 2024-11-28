@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -365,12 +365,12 @@ namespace Hikaria.QC.Utilities
 
             if (candidates.Length == 0)
             {
-                throw new ArgumentException(QuantumConsoleLoader.Localization.Format(66, method, newBase));
+                throw new ArgumentException(QuantumConsoleBootstrap.Localization.Format(66, method, newBase));
             }
 
             if (candidates.Length > 1)
             {
-                throw new ArgumentException(QuantumConsoleLoader.Localization.Format(67, method, newBase));
+                throw new ArgumentException(QuantumConsoleBootstrap.Localization.Format(67, method, newBase));
             }
 
             return candidates[0];

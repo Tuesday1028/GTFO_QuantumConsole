@@ -1,29 +1,153 @@
-﻿using GameData;
+﻿using BepInEx.Logging;
+using GameData;
 using Hikaria.QC.Extras;
 using Hikaria.QC.UI;
 using System.Reflection;
 using TheArchive.Core.Attributes;
+using TheArchive.Core.Attributes.Feature.Settings;
 using TheArchive.Core.FeaturesAPI;
 using TheArchive.Core.Localization;
 using TheArchive.Loader;
 using UnityEngine;
+using Logger = BepInEx.Logging.Logger;
 
-namespace Hikaria.QC.Loader
+namespace Hikaria.QC.Bootstrap
 {
     [EnableFeatureByDefault]
     [DisallowInGameToggle]
-    [HideInModSettings]
-    internal class QuantumConsoleLoader : Feature
+    internal class QuantumConsoleBootstrap : Feature
     {
-        public override string Name => "量子终端加载器";
+        public override string Name => "量子终端引导";
 
         public static new ILocalizationService Localization { get; set; }
+
+        public override Type[] LocalizationExternalTypes => new[]
+        {
+            typeof(LogLevel)
+        };
+
+        [FeatureConfig]
+        public static QuantumConsoleSettings Settings { get; set; }
+        public class QuantumConsoleSettings
+        {
+            [FSHeader("BepInEx 设置")]
+            [FSDisplayName("日志监听级别")]
+            public List<LogLevel> BIEListenLevel
+            {
+                get
+                {
+                    return _bieListenLevel;
+                }
+                set
+                {
+                    _bieListenLevel = value;
+
+                    _bieLogLevel = BepInEx.Logging.LogLevel.None;
+                    foreach (var level in _bieListenLevel)
+                    {
+                        _bieLogLevel |= (BepInEx.Logging.LogLevel)(int)level;
+                    }
+                }
+            }
+
+            public static BepInEx.Logging.LogLevel BIELogLevel => _bieLogLevel;
+            private static BepInEx.Logging.LogLevel _bieLogLevel = BepInEx.Logging.LogLevel.Message | BepInEx.Logging.LogLevel.Warning | BepInEx.Logging.LogLevel.Error | BepInEx.Logging.LogLevel.Fatal;
+            private List<LogLevel> _bieListenLevel = new();
+        }
+
+        public override void Init()
+        {
+            BIELogListener.Init();
+        }
+
+        public override void OnEnable()
+        {
+            BIELogListener.Instance.OnEnable();
+        }
+
+        public override void OnDisable()
+        {
+            BIELogListener.Instance.OnDisable();
+        }
 
         private static Dictionary<string, UnityEngine.Object> s_AssetLookup = new();
 
         public static UnityEngine.Object GetLoadedAsset(string path)
         {
             return s_AssetLookup[path.ToUpper()];
+        }
+
+
+        private class BIELogListener : ILogListener
+        {
+            public static BIELogListener Instance { get; private set; }
+
+            public static void Init()
+            {
+                Instance = new();
+
+                if (!Settings.BIEListenLevel.Any())
+                {
+                    Settings.BIEListenLevel.Add(LogLevel.Fatal);
+                    Settings.BIEListenLevel.Add(LogLevel.Error);
+                    Settings.BIEListenLevel.Add(LogLevel.Warning);
+                    Settings.BIEListenLevel.Add(LogLevel.Message);
+                }
+            }
+
+            public void OnEnable()
+            {
+                if (!Logger.Listeners.Contains(this))
+                {
+                    Logger.Listeners.Add(this);
+                }
+            }
+
+            public void OnDisable()
+            {
+                if (Logger.Listeners.Contains(this))
+                {
+                    Logger.Listeners.Remove(this);
+                }
+            }
+
+            public void Dispose()
+            {
+                if (Logger.Listeners.Contains(this))
+                {
+                    Logger.Listeners.Remove(this);
+                }
+            }
+
+            public void LogEvent(object sender, LogEventArgs eventArgs)
+            {
+                if (eventArgs.Source.SourceName == "Unity")
+                    return;
+
+                if (eventArgs.Level == BepInEx.Logging.LogLevel.None)
+                    return;
+
+                if (QuantumConsole.Instance == null)
+                    return;
+
+                QuantumConsole.Instance.LogToConsole($"[{eventArgs.Source.SourceName}] {eventArgs.Data}", FromBIELogLevel(eventArgs.Level), true);
+            }
+
+            private LogLevel FromBIELogLevel(BepInEx.Logging.LogLevel level)
+            {
+                return level.GetHighestLevel() switch
+                {
+                    BepInEx.Logging.LogLevel.Info => LogLevel.Info,
+                    BepInEx.Logging.LogLevel.Debug => LogLevel.Debug,
+                    BepInEx.Logging.LogLevel.Message => LogLevel.Message,
+                    BepInEx.Logging.LogLevel.Error => LogLevel.Error,
+                    BepInEx.Logging.LogLevel.Fatal => LogLevel.Error,
+                    BepInEx.Logging.LogLevel.Warning => LogLevel.Warning,
+                    _ => LogLevel.Debug,
+                };
+            }
+
+            public BepInEx.Logging.LogLevel LogLevelFilter => QuantumConsoleSettings.BIELogLevel;
         }
 
         [ArchivePatch(typeof(GameDataInit), nameof(GameDataInit.Initialize))]

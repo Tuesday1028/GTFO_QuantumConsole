@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 using Hikaria.QC.Suggestors.Tags;
 using Hikaria.QC.Utilities;
 using System.Reflection;
@@ -11,13 +11,13 @@ namespace Hikaria.QC
         [Command("help", "Shows a basic help guide for Quantum Console")]
         private static string GetHelp()
         {
-            return QuantumConsoleLoader.Localization.Get(12);
+            return QuantumConsoleBootstrap.Localization.Get(12);
         }
 
         [Command("manual")]
         private static string ManualHelp()
         {
-            return QuantumConsoleLoader.Localization.Get(13);
+            return QuantumConsoleBootstrap.Localization.Get(13);
         }
 
         [CommandDescription("Generates a user manual for any given command, including built in ones. To use the manual command, simply put the desired command name infront of it. For example, 'manual my-command' will generate the manual for 'my-command'")]
@@ -34,7 +34,7 @@ namespace Hikaria.QC
 
             if (matchingCommands.Length == 0)
             {
-                throw new ArgumentException(QuantumConsoleLoader.Localization.Format(14, commandName));
+                throw new ArgumentException(QuantumConsoleBootstrap.Localization.Format(14, commandName));
             }
 
             Dictionary<string, ParameterInfo> foundParams = new Dictionary<string, ParameterInfo>();
@@ -42,7 +42,7 @@ namespace Hikaria.QC
             Dictionary<string, CommandParameterDescriptionAttribute> foundParamDescriptions = new Dictionary<string, CommandParameterDescriptionAttribute>();
             List<Type> declaringTypes = new List<Type>(1);
 
-            string manual = QuantumConsoleLoader.Localization.Format(15, commandName);;
+            string manual = QuantumConsoleBootstrap.Localization.Format(15, commandName);;
 
             for (int i = 0; i < matchingCommands.Length; i++)
             {
@@ -75,7 +75,7 @@ namespace Hikaria.QC
 
             if (foundParams.Count > 0)
             {
-                manual += QuantumConsoleLoader.Localization.Get(17);
+                manual += QuantumConsoleBootstrap.Localization.Get(17);
                 ParameterInfo[] commandParams = foundParams.Values.ToArray();
                 for (int i = 0; i < commandParams.Length; i++)
                 {
@@ -106,21 +106,21 @@ namespace Hikaria.QC
                     }
                 }
             }
-            if (!string.IsNullOrWhiteSpace(genericConstraintInformation)) { manual += QuantumConsoleLoader.Localization.Format(18, genericConstraintInformation); }
+            if (!string.IsNullOrWhiteSpace(genericConstraintInformation)) { manual += QuantumConsoleBootstrap.Localization.Format(18, genericConstraintInformation); }
 
             for (int i = 0; i < matchingCommands.Length; i++)
             {
                 CommandData currentCommand = _commandTable[matchingCommands[i]];
                 if (currentCommand.HasDescription)
                 {
-                    manual += QuantumConsoleLoader.Localization.Format(19, currentCommand.CommandDescription);
+                    manual += QuantumConsoleBootstrap.Localization.Format(19, currentCommand.CommandDescription);
                     i = matchingCommands.Length;
                 }
             }
 
             if (foundParamDescriptions.Count > 0)
             {
-                manual += QuantumConsoleLoader.Localization.Get(20);
+                manual += QuantumConsoleBootstrap.Localization.Get(20);
                 ParameterInfo[] commandParams = foundParams.Values.ToArray();
                 for (int i = 0; i < commandParams.Length; i++)
                 {
@@ -133,7 +133,7 @@ namespace Hikaria.QC
             }
 
             declaringTypes = declaringTypes.Distinct().ToList();
-            manual += QuantumConsoleLoader.Localization.Get(21);
+            manual += QuantumConsoleBootstrap.Localization.Get(21);
             if (declaringTypes.Count == 1) { manual += $" {declaringTypes[0].GetDisplayName(true)}"; }
             else
             {
@@ -163,7 +163,7 @@ namespace Hikaria.QC
         [Command("all-commands")]
         private static string GenerateCommandList()
         {
-            string output = QuantumConsoleLoader.Localization.Get(22);
+            string output = QuantumConsoleBootstrap.Localization.Get(22);
             foreach (CommandData command in GetUniqueCommands())
             {
                 output += $"\n   - {command.CommandName}";
@@ -176,7 +176,7 @@ namespace Hikaria.QC
         private static IEnumerable<string> GenerateUserCommandList()
         {
             return GetUniqueCommands()
-                .Where(x => !x.MethodData.DeclaringType.Assembly.FullName.StartsWith("Hikaria.QC."))
+                .Where(x => !x.MethodData.DeclaringType.Assembly.FullName.StartsWith("Hikaria.QC"))
                 .Select(x => $"   - {x.CommandName}");
         }
     }

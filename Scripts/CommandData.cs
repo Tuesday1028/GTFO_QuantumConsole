@@ -1,5 +1,5 @@
 ﻿using Hikaria.QC.Internal;
-using Hikaria.QC.Loader;
+using Hikaria.QC.Bootstrap;
 using Hikaria.QC.Utilities;
 using System.Reflection;
 
@@ -33,7 +33,7 @@ namespace Hikaria.QC
         {
             if (genericTypeArguments.Length != GenericParamTypes.Length)
             {
-                throw new ArgumentException(QuantumConsoleLoader.Localization.Get(69));
+                throw new ArgumentException(QuantumConsoleBootstrap.Localization.Get(69));
             }
 
             Dictionary<string, Type> substitutionTable = new Dictionary<string, Type>();
@@ -76,7 +76,7 @@ namespace Hikaria.QC
                 return baseType.MakeGenericType(typeArguments);
             }
 
-            throw new ArgumentException(QuantumConsoleLoader.Localization.Format(70, genericType));
+            throw new ArgumentException(QuantumConsoleBootstrap.Localization.Format(70, genericType));
         }
 
         public object Invoke(object[] paramData, Type[] genericTypeArguments)
@@ -137,7 +137,7 @@ namespace Hikaria.QC
                 }
                 catch (ArgumentException)
                 {
-                    throw new ArgumentException(QuantumConsoleLoader.Localization.Format(71, CommandName));
+                    throw new ArgumentException(QuantumConsoleBootstrap.Localization.Format(71, CommandName));
                 }
             }
 

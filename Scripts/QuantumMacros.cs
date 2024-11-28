@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 
 namespace Hikaria.QC
 {
@@ -88,12 +88,12 @@ namespace Hikaria.QC
         public static void DefineMacro(string macroName, string macroExpansion)
         {
             macroName = macroName.Trim();
-            if (macroName.Contains(' ')) { throw new ArgumentException(QuantumConsoleLoader.Localization.Get(23)); }
-            if (macroName.Contains('\n')) { throw new ArgumentException(QuantumConsoleLoader.Localization.Get(24)); }
-            if (macroName.Contains('#')) { throw new ArgumentException(QuantumConsoleLoader.Localization.Get(25)); }
-            if (macroName == "define") { throw new ArgumentException(QuantumConsoleLoader.Localization.Get(26)); }
-            if (macroExpansion.Contains('\n')) { throw new ArgumentException(QuantumConsoleLoader.Localization.Get(27)); }
-            if (macroExpansion.Contains($"#{macroName}")) { throw new ArgumentException(QuantumConsoleLoader.Localization.Get(28)); }
+            if (macroName.Contains(' ')) { throw new ArgumentException(QuantumConsoleBootstrap.Localization.Get(23)); }
+            if (macroName.Contains('\n')) { throw new ArgumentException(QuantumConsoleBootstrap.Localization.Get(24)); }
+            if (macroName.Contains('#')) { throw new ArgumentException(QuantumConsoleBootstrap.Localization.Get(25)); }
+            if (macroName == "define") { throw new ArgumentException(QuantumConsoleBootstrap.Localization.Get(26)); }
+            if (macroExpansion.Contains('\n')) { throw new ArgumentException(QuantumConsoleBootstrap.Localization.Get(27)); }
+            if (macroExpansion.Contains($"#{macroName}")) { throw new ArgumentException(QuantumConsoleBootstrap.Localization.Get(28)); }
 
             if (_macroTable.ContainsKey(macroName)) { _macroTable[macroName] = macroExpansion; }
             else { _macroTable.Add(macroName, macroExpansion); }
@@ -104,7 +104,7 @@ namespace Hikaria.QC
         public static void RemoveMacro(string macroName)
         {
             if (_macroTable.ContainsKey(macroName)) { _macroTable.Remove(macroName); }
-            else { throw new Exception(QuantumConsoleLoader.Localization.Format(29, macroName)); }
+            else { throw new Exception(QuantumConsoleBootstrap.Localization.Format(29, macroName)); }
         }
 
         [Command("clear-macros")]
@@ -114,8 +114,8 @@ namespace Hikaria.QC
         [Command("all-macros", "Displays all of the macros currently stored in the macro table")]
         private static string GetAllMacros()
         {
-            if (_macroTable.Count == 0) { return QuantumConsoleLoader.Localization.Get(30); }
-            else { return QuantumConsoleLoader.Localization.Format(31, string.Join("\n", _macroTable.Select((x) => $"#{x.Key} = {x.Value}"))); }
+            if (_macroTable.Count == 0) { return QuantumConsoleBootstrap.Localization.Get(30); }
+            else { return QuantumConsoleBootstrap.Localization.Format(31, string.Join("\n", _macroTable.Select((x) => $"#{x.Key} = {x.Value}"))); }
         }
 
         [Command("dump-macros", "Creates a file dump of macro table which can the be loaded to repopulate the table using load-macros")]
@@ -140,7 +140,7 @@ namespace Hikaria.QC
         {
             if (!File.Exists(filePath))
             {
-                throw new ArgumentException(QuantumConsoleLoader.Localization.Format(32, filePath));
+                throw new ArgumentException(QuantumConsoleBootstrap.Localization.Format(32, filePath));
             }
 
             using (StreamReader macroFile = new StreamReader(filePath))
@@ -152,17 +152,17 @@ namespace Hikaria.QC
                     string[] parts = line.Split(" ".ToCharArray(), 2);
                     if (parts.Length != 2)
                     {
-                        messages.Add(QuantumConsoleLoader.Localization.Format(33, line));
+                        messages.Add(QuantumConsoleBootstrap.Localization.Format(33, line));
                     }
 
                     try
                     {
                         DefineMacro(parts[0], parts[1]);
-                        messages.Add(QuantumConsoleLoader.Localization.Format(34, parts[0]));
+                        messages.Add(QuantumConsoleBootstrap.Localization.Format(34, parts[0]));
                     }
                     catch (Exception e)
                     {
-                        messages.Add(QuantumConsoleLoader.Localization.Format(35, parts[0], e.Message));
+                        messages.Add(QuantumConsoleBootstrap.Localization.Format(35, parts[0], e.Message));
                     }
                 }
 

@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 
 namespace Hikaria.QC
 {
@@ -70,7 +70,7 @@ namespace Hikaria.QC
                 }
             }
 
-            throw new KeyNotFoundException(QuantumConsoleLoader.Localization.Format(65, typeof(T)));
+            throw new KeyNotFoundException(QuantumConsoleBootstrap.Localization.Format(65, typeof(T)));
         }
 
         /// <summary>

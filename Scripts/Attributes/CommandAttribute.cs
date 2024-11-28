@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 using System.Runtime.CompilerServices;
 
 namespace Hikaria.QC
@@ -27,7 +27,7 @@ namespace Hikaria.QC
             {
                 if (Alias.Contains(_bannedAliasChars[i]))
                 {
-                    string errorMessage = QuantumConsoleLoader.Localization.Format(40, Alias, _bannedAliasChars[i]);
+                    string errorMessage = QuantumConsoleBootstrap.Localization.Format(40, Alias, _bannedAliasChars[i]);
                     Logs.LogError(errorMessage);
                     Valid = false;
                     throw new ArgumentException(errorMessage, nameof(aliasOverride));

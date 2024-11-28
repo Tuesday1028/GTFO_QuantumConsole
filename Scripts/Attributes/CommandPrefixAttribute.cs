@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 using System.Runtime.CompilerServices;
 
 namespace Hikaria.QC
@@ -21,7 +21,7 @@ namespace Hikaria.QC
             {
                 if (Prefix.Contains(c))
                 {
-                    string errorMessage = QuantumConsoleLoader.Localization.Format(41, Prefix, c);
+                    string errorMessage = QuantumConsoleBootstrap.Localization.Format(41, Prefix, c);
                     Logs.LogError(errorMessage);
 
                     Valid = false;

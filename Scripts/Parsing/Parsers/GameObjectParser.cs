@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 using Hikaria.QC.Utilities;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ namespace Hikaria.QC.Parsers
 
             if (!obj)
             {
-                throw new ParserInputException(QuantumConsoleLoader.Localization.Format(55, value));
+                throw new ParserInputException(QuantumConsoleBootstrap.Localization.Format(55, value));
             }
 
             return obj;

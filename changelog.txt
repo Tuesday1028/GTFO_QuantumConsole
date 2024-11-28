@@ -33,7 +33,7 @@ Bug Fix 0070: Fixed a native crash that would occur under the editor with Facepu
 
 V2.6.1
 Addition 0137: Commands can now be generated and added at runtime using lambda commands
-Change 0070: The BasicCachedQcSuggestor type was moved to the Hikaria.QC. namespace
+Change 0070: The BasicCachedQcSuggestor type was moved to the Hikaria.QC namespace
 
 V2.6.0
 Addition 0124: New user extendable contextual autocomplete system

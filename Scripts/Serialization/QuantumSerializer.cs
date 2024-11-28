@@ -1,4 +1,4 @@
-﻿using Hikaria.QC.Loader;
+﻿using Hikaria.QC.Bootstrap;
 using Hikaria.QC.Utilities;
 
 namespace Hikaria.QC
@@ -57,7 +57,7 @@ namespace Hikaria.QC
                 }
                 catch (Exception e)
                 {
-                    throw new Exception(QuantumConsoleLoader.Localization.Format(64, type.GetDisplayName(), serializer, e.Message), e);
+                    throw new Exception(QuantumConsoleBootstrap.Localization.Format(64, type.GetDisplayName(), serializer, e.Message), e);
                 }
             }
 
