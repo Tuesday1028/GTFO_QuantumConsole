@@ -1,8 +1,6 @@
 ﻿using Hikaria.QC.Bootstrap;
 using Hikaria.QC.Utilities;
-using Microsoft.VisualBasic;
 using System.Collections;
-using TheArchive.Core.Attributes.Feature.Settings;
 using TMPro;
 using UnityEngine;
 
@@ -49,21 +47,19 @@ namespace Hikaria.QC
         public TMP_FontAsset Font => QuantumConsoleBootstrap.GetLoadedAsset(FontAssetPath).Cast<TMP_FontAsset>();
         public Material PanelMaterial => QuantumConsoleBootstrap.GetLoadedAsset(PanelMaterialAssetPath).Cast<Material>();
 
-        [FSDisplayName("Font Asset Path")]
-        public string FontAssetPath { get; set; } = "Assets/Plugins/QFSW/Quantum Console/Source/Fonts/TMP/OfficeCodePro-Regular SDF.asset";
-        [FSDisplayName("Panel Material Asset Path")]
-        public string PanelMaterialAssetPath { get; set; } = "Assets/Plugins/QFSW/Quantum Console/Source/Materials/Blur Panel.mat";
+        public string FontAssetPath = "Assets/Plugins/QFSW/Quantum Console/Source/Fonts/TMP/OfficeCodePro-Regular SDF.asset";
+        public string PanelMaterialAssetPath = "Assets/Plugins/QFSW/Quantum Console/Source/Materials/Blur Panel.mat";
 
-        public Color PanelColor { get; set; } = Color.white;
-        public Color CommandLogColor { get; set; } = Color.cyan;
-        public Color SelectedSuggestionColor { get; set; } = new(1, 1, 0.55f);
-        public Color SuggestionColor { get; set; } = Color.gray;
-        public Color ErrorColor { get; set; } = Color.red;
-        public Color FatalColor { get; set; } = Color.red;
-        public Color WarningColor { get; set; } = Color.yellow;
-        public Color MessageColor { get; set; } = Color.white;
-        public Color DebugColor { get; set; } = ColorExtensions.DarkGray;
-        public Color InfoColor { get; set; } = ColorExtensions.DarkGray;
+        public Color PanelColor = Color.white;
+        public Color CommandLogColor = Color.cyan;
+        public Color SelectedSuggestionColor = new(1, 1, 0.55f);
+        public Color SuggestionColor = Color.gray;
+        public Color ErrorColor = Color.red;
+        public Color FatalColor = Color.red;
+        public Color WarningColor = Color.yellow;
+        public Color MessageColor = Color.white;
+        public Color DebugColor = ColorExtensions.DarkGray;
+        public Color InfoColor = ColorExtensions.DarkGray;
 
         public Color SuccessColor = Color.green;
 

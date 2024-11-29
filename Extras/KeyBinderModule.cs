@@ -32,7 +32,7 @@ namespace Hikaria.QC.Extras
                 _consoleInstance.OnActivate += BlockInput;
                 _consoleInstance.OnDeactivate += UnblockInput;
 
-                _blocked = _consoleInstance.IsActive || InputMapper.Current.m_currentState == eFocusState.Console;
+                _blocked = _consoleInstance.IsActive || InputMapper.Current.m_currentState == eFocusState.ComputerTerminal;
             }
             else
             {

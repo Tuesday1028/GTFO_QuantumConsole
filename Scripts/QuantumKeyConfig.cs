@@ -1,5 +1,4 @@
-﻿using TheArchive.Core.Attributes.Feature.Settings;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Hikaria.QC
 {
@@ -23,33 +22,17 @@ namespace Hikaria.QC
             return config;
         }
 
-        [FSDisplayName("Submit Command Key")]
         public KeyCode SubmitCommandKey { get; set; } = KeyCode.Return;
-        [FSDisplayName("Show Console Key")]
         public ModifierKeyCombo ShowConsoleKey { get; set; } = KeyCode.None;
-        [FSDisplayName("Hide Console Key")]
         public ModifierKeyCombo HideConsoleKey { get; set; } = KeyCode.None;
-        [FSDisplayName("Toggle Console Key")]
         public ModifierKeyCombo ToggleConsoleVisibilityKey { get; set; } = KeyCode.BackQuote;
-
-        [FSDisplayName("Zoom In Key")]
         public ModifierKeyCombo ZoomInKey { get; set; } = new ModifierKeyCombo { Key = KeyCode.Equals, Ctrl = true };
-        [FSDisplayName("Zoom Out Key")]
         public ModifierKeyCombo ZoomOutKey { get; set; } = new ModifierKeyCombo { Key = KeyCode.Minus, Ctrl = true };
-        [FSDisplayName("Drag Console Key")]
         public ModifierKeyCombo DragConsoleKey { get; set; } = new ModifierKeyCombo { Key = KeyCode.Mouse0, Shift = true };
-
-        [FSDisplayName("Select Next Suggestion Key")]
         public ModifierKeyCombo SelectNextSuggestionKey { get; set; } = KeyCode.Tab;
-        [FSDisplayName("Select Previous Suggestion Key")]
         public ModifierKeyCombo SelectPreviousSuggestionKey { get; set; } = new ModifierKeyCombo { Key = KeyCode.Tab, Shift = true };
-
-        [FSDisplayName("Next Command Key")]
         public KeyCode NextCommandKey { get; set; } = KeyCode.UpArrow;
-        [FSDisplayName("Previous Command Key")]
         public KeyCode PreviousCommandKey { get; set; } = KeyCode.DownArrow;
-
-        [FSDisplayName("Cancel Actions Key")]
         public ModifierKeyCombo CancelActionsKey { get; set; } = new ModifierKeyCombo { Key = KeyCode.C, Ctrl = true };
     }
 }

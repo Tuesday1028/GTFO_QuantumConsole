@@ -1,6 +1,4 @@
-﻿using TheArchive.Core.Attributes.Feature.Settings;
-
-namespace Hikaria.QC
+﻿namespace Hikaria.QC
 {
     public class QuantumSettings
     {
@@ -15,17 +13,9 @@ namespace Hikaria.QC
 
             return settings;
         }
-
-        [FSDisplayName("Max Log Size")]
-        public int MaxLogSize { get; set; } = 5120;
-
-        [FSDisplayName("Max Logs")]
+        public int MaxLogSize { get; set; } = 8192;
         public int MaxLogs { get; set; } = 768;
-
-        [FSDisplayName("Log Font Size")]
         public int LogFontSize { get; set; } = 14;
-
-        [FSDisplayName("Log Font Size")]
         public int SuggetionFontSize { get; set; } = 16;
     }
 }

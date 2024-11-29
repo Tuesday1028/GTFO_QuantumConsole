@@ -32,8 +32,13 @@ namespace Hikaria.QC
         private QuantumTheme _theme;
         private QuantumKeyConfig _keyConfig;
         private QuantumLocalization _localization;
+        private QuantumConsolePreferences _preferences;
 
-        public QuantumTheme Theme => _theme;
+        public QuantumTheme Theme
+        {
+            get => _theme;
+            set => _theme = value;
+        }
 
         public QuantumKeyConfig KeyConfig
         {
@@ -48,6 +53,16 @@ namespace Hikaria.QC
             {
                 _localization = value;
                 ApplyLocalization(value);
+            }
+        }
+
+        public QuantumConsolePreferences Preferences
+        {
+            get => _preferences;
+            set
+            {
+                _preferences = value;
+                ApplyPreferences(value);
             }
         }
 
@@ -193,6 +208,47 @@ namespace Hikaria.QC
                 _clearButtonText.text = localization.ClearButtonText;
                 _closeButtonText.text = localization.CloseButtonText;
             }
+        }
+
+        private void ApplyPreferences(QuantumConsolePreferences pref)
+        {
+            _suggestionPopupText.fontSize = pref.SuggestionFontSize;
+            _consoleLogText.fontSize = pref.LogFontSize;
+
+            _verboseErrors = pref.VerboseErrors;
+            _verboseLogging = pref.VerboseLogging;
+            _loggingLevel = pref.LoggingLevel;
+
+            _openOnLogLevel = pref.OpenOnLogLevel;
+            _interceptDebugLogger = pref.InterceptDebugLogger;
+            _interceptWhilstInactive = pref.InterceptWhilstInactive;
+            _prependTimestamps = pref.PrependTimestamps;
+
+            _activateOnStartup = pref.ActivateOnStartup;
+            _initialiseOnStartup = pref.InitialiseOnStartup;
+            _focusOnActivate = pref.FocusOnActivate;
+            _closeOnSubmit = pref.CloseOnSubmit;
+            _autoScroll = pref.AutoScroll;
+
+            _enableAutocomplete = pref.EnableAutocomplete;
+            _showPopupDisplay = pref.ShowPopupDisplay;
+            _suggestionDisplayOrder = pref.SuggestionDisplayOrder;
+            _maxSuggestionDisplaySize = pref.MaxSuggestionDisplaySize;
+            _useFuzzySearch = pref.UseFuzzySearch;
+            _caseSensitiveSearch = pref.CaseSensitiveSearch;
+            _collapseSuggestionOverloads = pref.CollapseSuggestionOverloads;
+
+            _showCurrentJobs = pref.ShowCurrentJobs;
+            _blockOnAsync = pref.BlockOnAsync;
+
+            _storeCommandHistory = pref.StoreCommandHistory;
+            _storeDuplicateCommands = pref.StoreDuplicateCommands;
+            _storeAdjacentDuplicateCommands = pref.StoreAdjacentDuplicateCommands;
+            _commandHistorySize = pref.CommandHistorySize;
+
+            _maxStoredLogs = pref.MaxStoredLogs;
+            _maxLogSize = pref.MaxLogSize;
+            _showInitLogs = pref.ShowInitLogs;
         }
 
         /// <summary>Applies a theme to the Quantum Console.</summary>
@@ -922,7 +978,7 @@ namespace Hikaria.QC
 
                     logText = $"{string.Format(format, now.Hour, now.Minute, now.Second)} {logText}";
                 }
-                logText = logText.ColorText(logLevel.GetUnityColor(_theme));
+                logText = logText.ColorText(logLevel.GetUnityColorFromTheme(_theme));
                 LogToConsole(new Log(logText, logLevel, newLine));
             }
         }
@@ -1203,6 +1259,7 @@ namespace Hikaria.QC
 
         private void OnDestroy()
         {
+            QuantumConsoleBootstrap.Localization.RemoveTextUpdater(this);
             _logMessageReceivedThreadedAction = null;
         }
 
@@ -1230,9 +1287,11 @@ namespace Hikaria.QC
             _theme ??= QuantumTheme.DefaultTheme();
             _keyConfig ??= QuantumKeyConfig.DefaultKeyConfig();
             _localization ??= new();
+            _preferences ??= new();
 
             ApplyTheme(_theme);
             ApplyLocalization(_localization);
+            ApplyPreferences(_preferences);
         }
 
         private void InitializeSuggestionStack()
@@ -1277,7 +1336,7 @@ namespace Hikaria.QC
         /// <param name="shouldFocus">If the input field should be automatically focused.</param>
         public void Activate(bool shouldFocus)
         {
-            if (PlayerChatManager.InChatMode || InputMapper.Current.m_currentState == eFocusState.Console)
+            if (PlayerChatManager.InChatMode || InputMapper.Current.m_currentState == eFocusState.ComputerTerminal)
                 return;
 
             Initialize();

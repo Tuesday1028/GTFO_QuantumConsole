@@ -30,7 +30,7 @@ namespace Hikaria.QC.Logging
         /// </summary>
         /// <param name="level">The log level(s).</param>
         /// <returns>A console color associated with the highest log level supplied.</returns>
-        public static Color GetUnityColor(this LogLevel level, QuantumTheme theme)
+        public static Color GetUnityColorFromTheme(this LogLevel level, QuantumTheme theme)
         {
             level = level.GetHighestLevel();
             switch (level)
