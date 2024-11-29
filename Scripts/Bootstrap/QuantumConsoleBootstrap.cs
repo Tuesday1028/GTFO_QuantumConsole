@@ -25,7 +25,7 @@ namespace Hikaria.QC.Bootstrap
 
         public override Type[] LocalizationExternalTypes => new[]
         {
-            typeof(LogLevel), typeof(SupportedState), typeof(AutoScrollOptions), typeof(SortOrder)
+            typeof(BepInEx.Logging.LogLevel), typeof(LogLevel), typeof(AutoScrollOptions), typeof(SortOrder)
         };
 
         public override bool RequiresRestart => true;
@@ -37,7 +37,7 @@ namespace Hikaria.QC.Bootstrap
         public class QuantumConsoleSettings
         {
             [FSDisplayName("BepInEx 日志监听级别")]
-            public List<LogLevel> BIEListenLevel
+            public List<BepInEx.Logging.LogLevel> BIEListenLevel
             {
                 get
                 {
@@ -47,11 +47,7 @@ namespace Hikaria.QC.Bootstrap
                 {
                     _bieListenLevel = value;
 
-                    _bieLogLevel = BepInEx.Logging.LogLevel.None;
-                    foreach (var level in _bieListenLevel)
-                    {
-                        _bieLogLevel |= (BepInEx.Logging.LogLevel)(int)level;
-                    }
+                    _bieLogLevel = (BepInEx.Logging.LogLevel)(ulong)_bieListenLevel.ToFlags();
                 }
             }
             [FSDisplayName("按键绑定")]
@@ -63,7 +59,7 @@ namespace Hikaria.QC.Bootstrap
 
             public static BepInEx.Logging.LogLevel BIELogLevel => _bieLogLevel;
             private static BepInEx.Logging.LogLevel _bieLogLevel = BepInEx.Logging.LogLevel.Message | BepInEx.Logging.LogLevel.Warning | BepInEx.Logging.LogLevel.Error | BepInEx.Logging.LogLevel.Fatal;
-            private List<LogLevel> _bieListenLevel = new();
+            private List<BepInEx.Logging.LogLevel> _bieListenLevel = new();
         }
 
         public class QuantumThemeSettings
@@ -127,12 +123,12 @@ namespace Hikaria.QC.Bootstrap
             [FSDisplayName("详细错误日志")]
             public bool VerboseErrors { get; set; } = false;
             [FSDisplayName("详细记录日志级别")]
-            public List<LogLevel> VerboseLogging { get; set; } = new List<LogLevel>() { LogLevel.None };
+            public List<LogLevel> VerboseLogging { get; set; } = new();
             [FSDisplayName("Unity日志监听级别")]
-            public List<LogLevel> LoggingLevel { get; set; } = new List<LogLevel>() { LogLevel.Debug, LogLevel.Info, LogLevel.Message, LogLevel.Error, LogLevel.Fatal };
+            public List<LogLevel> LoggingLevel { get; set; } = new();
 
             [FSDisplayName("自动激活日志级别")]
-            public List<LogLevel> OpenOnLogLevel { get; set; } = new List<LogLevel>() { LogLevel.None };
+            public List<LogLevel> OpenOnLogLevel { get; set; } = new();
             [FSDisplayName("监听Unity日志")]
             public bool InterceptDebugLogger { get; set; } = true;
             [FSDisplayName("非激活时监听")]
@@ -160,7 +156,7 @@ namespace Hikaria.QC.Bootstrap
             public AutoScrollOptions AutoScroll { get; set; } = AutoScrollOptions.OnInvoke;
 
             [FSHeader("指令设置")]
-            [FSDisplayName("自动完成")]
+            [FSDisplayName("自动补全")]
             public bool EnableAutocomplete { get; set; } = true;
             [FSDisplayName("指令提示")]
             public bool ShowPopupDisplay { get; set; } = true;
@@ -339,14 +335,6 @@ namespace Hikaria.QC.Bootstrap
                     return;
 
                 Instance = new();
-
-                if (!Settings.BIEListenLevel.Any())
-                {
-                    Settings.BIEListenLevel.Add(LogLevel.Fatal);
-                    Settings.BIEListenLevel.Add(LogLevel.Error);
-                    Settings.BIEListenLevel.Add(LogLevel.Warning);
-                    Settings.BIEListenLevel.Add(LogLevel.Message);
-                }
             }
 
             public void OnEnable()
