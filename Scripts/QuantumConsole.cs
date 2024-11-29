@@ -1269,8 +1269,12 @@ namespace Hikaria.QC
             enabled = false;
         }
 
+        private bool _initialized;
         private void Initialize()
         {
+            if (_initialized)
+                return;
+
             if (!QuantumConsoleProcessor.TableGenerated)
             {
                 QuantumConsoleProcessor.GenerateCommandTable(true);
@@ -1292,6 +1296,8 @@ namespace Hikaria.QC
             ApplyTheme(_theme);
             ApplyLocalization(_localization);
             ApplyPreferences(_preferences);
+
+            _initialized = true;
         }
 
         private void InitializeSuggestionStack()
