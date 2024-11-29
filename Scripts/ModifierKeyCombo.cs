@@ -1,13 +1,18 @@
-﻿using UnityEngine;
+﻿using TheArchive.Core.Attributes.Feature.Settings;
+using UnityEngine;
 
 namespace Hikaria.QC
 {
     public struct ModifierKeyCombo
     {
-        public KeyCode Key;
-        public bool Ctrl;
-        public bool Alt;
-        public bool Shift;
+        [FSDisplayName("Key")]
+        public KeyCode Key { get; set; }
+        [FSDisplayName("Ctrl")]
+        public bool Ctrl { get; set; }
+        [FSDisplayName("Alt")]
+        public bool Alt { get; set; }
+        [FSDisplayName("Shift")]
+        public bool Shift { get; set; }
 
         public bool ModifiersActive
         {

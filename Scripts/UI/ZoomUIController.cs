@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Il2CppInterop.Runtime.Attributes;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -70,13 +71,14 @@ namespace Hikaria.QC.UI
             }
         }
 
-        internal static void Setup(ZoomUIController self, Button zoomSizeDownButton, Button zoomSizeUpButton, DynamicCanvasScaler dynamicCanvasScaler, QuantumConsole quantumConsole, TextMeshProUGUI textMeshProUGUI)
+        [HideFromIl2Cpp]
+        internal void Setup(Button zoomSizeDownButton, Button zoomSizeUpButton, DynamicCanvasScaler dynamicCanvasScaler, QuantumConsole quantumConsole, TextMeshProUGUI textMeshProUGUI)
         {
-            self._zoomDownBtn = zoomSizeDownButton;
-            self._zoomUpBtn = zoomSizeUpButton;
-            self._scaler = dynamicCanvasScaler;
-            self._quantumConsole = quantumConsole;
-            self._text = textMeshProUGUI;
+            _zoomDownBtn = zoomSizeDownButton;
+            _zoomUpBtn = zoomSizeUpButton;
+            _scaler = dynamicCanvasScaler;
+            _quantumConsole = quantumConsole;
+            _text = textMeshProUGUI;
         }
     }
 }

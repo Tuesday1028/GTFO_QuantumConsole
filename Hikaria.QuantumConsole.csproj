@@ -6,10 +6,15 @@
     <Nullable>disable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <RootNamespace>Hikaria.QC</RootNamespace>
+    <Configurations>Debug;Release;BepInEx</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DefineConstants>$(DefineConstants);UNITY_2018_4_OR_NEWER;ENABLE_IL2CPP;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER</DefineConstants>
+    <DefineConstants>$(DefineConstants);ENABLE_IL2CPP;UNITY_2018_4_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;TheArchive</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='BepInEx|AnyCPU'">
+    <DefineConstants>$(DefineConstants);ENABLE_IL2CPP;UNITY_2018_4_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;BepInEx</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

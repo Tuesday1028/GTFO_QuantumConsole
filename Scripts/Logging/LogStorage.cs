@@ -31,7 +31,7 @@ namespace Hikaria.QC
                 while (_consoleLogs.Count > MaxStoredLogs)
                 {
                     int junkLength = _consoleLogs[0].Text.Length;
-                    if (_consoleLogs.Count > 1 &&_consoleLogs[1].NewLine)
+                    if (_consoleLogs.Count > 1 && _consoleLogs[1].NewLine)
                     {
                         junkLength += Environment.NewLine.Length;
                     }

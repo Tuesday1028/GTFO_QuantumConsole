@@ -149,14 +149,8 @@ namespace Hikaria.QC
             return target;
         }
 
-        private static object CreateCommandSingletonInstance(Type classType)
+        private static Component CreateCommandSingletonInstance(Type classType)
         {
-            var il2cppType = Il2CppType.From(classType);
-            if (il2cppType == null)
-            {
-                var singlenton = Activator.CreateInstance(classType);
-                return singlenton;
-            }
             GameObject obj = new GameObject($"{classType}Singleton");
             Object.DontDestroyOnLoad(obj);
             return obj.AddComponent(Il2CppType.From(classType, true)).Cast<Component>();

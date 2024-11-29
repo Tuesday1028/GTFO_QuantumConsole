@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Il2CppInterop.Runtime.Attributes;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -16,22 +17,22 @@ namespace Hikaria.QC.UI
         private Vector2 _lastDragPos = Vector2.zero;
         private bool _isDragging = false;
 
-        internal static void Setup(ResizableUI self, RectTransform containerRect, Canvas canvas)
+        [HideFromIl2Cpp]
+        internal void Setup(RectTransform containerRect, Canvas canvas)
         {
-            self._resizeRoot = containerRect;
-            self._resizeCanvas = canvas;
+            _resizeRoot = containerRect;
+            _resizeCanvas = canvas;
 
-
-            var eventTrigger = self.gameObject.AddComponent<EventTrigger>();
+            var eventTrigger = gameObject.AddComponent<EventTrigger>();
 
             var onBeginDragEntry = new EventTrigger.Entry();
             onBeginDragEntry.eventID = EventTriggerType.BeginDrag;
-            onBeginDragEntry.callback.AddListener(new Action<BaseEventData>((data) => { self.OnBeginDrag(data.Cast<PointerEventData>()); }));
+            onBeginDragEntry.callback.AddListener(new Action<BaseEventData>((data) => { OnBeginDrag(data.Cast<PointerEventData>()); }));
             eventTrigger.triggers.Add(onBeginDragEntry);
 
             var onEndDragEntry = new EventTrigger.Entry();
             onEndDragEntry.eventID = EventTriggerType.EndDrag;
-            onEndDragEntry.callback.AddListener(new Action<BaseEventData>((data) => { self.OnEndDrag(data.Cast<PointerEventData>()); }));
+            onEndDragEntry.callback.AddListener(new Action<BaseEventData>((data) => { OnEndDrag(data.Cast<PointerEventData>()); }));
             eventTrigger.triggers.Add(onEndDragEntry);
         }
 

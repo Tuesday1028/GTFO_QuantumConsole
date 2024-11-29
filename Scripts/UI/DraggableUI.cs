@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Il2CppInterop.Runtime.Attributes;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -94,35 +95,36 @@ namespace Hikaria.QC.UI
             _scrollRect.OnScroll(eventData);
         }
 
-        internal static void Setup(DraggableUI self, RectTransform containerRect, QuantumConsole quantumConsole, ScrollRect scrollRect)
+        [HideFromIl2Cpp]
+        internal void Setup(RectTransform containerRect, QuantumConsole quantumConsole, ScrollRect scrollRect)
         {
-            self._dragRoot = containerRect;
-            self._quantumConsole = quantumConsole;
-            self._scrollRect = scrollRect;
+            _dragRoot = containerRect;
+            _quantumConsole = quantumConsole;
+            _scrollRect = scrollRect;
 
-            self._onBeginDrag = new();
-            self._onDrag = new();
-            self._onEndDrag = new();
+            _onBeginDrag = new();
+            _onDrag = new();
+            _onEndDrag = new();
 
-            self._onBeginDrag.AddListener(new Action(() => { scrollRect.enabled = false; }));
-            self._onDrag.AddListener(new Action(() => { }));
-            self._onEndDrag.AddListener(new Action(() => { scrollRect.enabled = true; }));
+            _onBeginDrag.AddListener(new Action(() => { scrollRect.enabled = false; }));
+            _onDrag.AddListener(new Action(() => { }));
+            _onEndDrag.AddListener(new Action(() => { scrollRect.enabled = true; }));
 
-            var eventTrigger = self.gameObject.AddComponent<EventTrigger>();
+            var eventTrigger = gameObject.AddComponent<EventTrigger>();
 
             var onBeginDragEntry = new EventTrigger.Entry();
             onBeginDragEntry.eventID = EventTriggerType.PointerDown;
-            onBeginDragEntry.callback.AddListener(new Action<BaseEventData>((data) => { self.OnPointerDown(data.Cast<PointerEventData>());}));
+            onBeginDragEntry.callback.AddListener(new Action<BaseEventData>((data) => { OnPointerDown(data.Cast<PointerEventData>());}));
             eventTrigger.triggers.Add(onBeginDragEntry);
 
             var onEndDragEntry = new EventTrigger.Entry();
             onEndDragEntry.eventID = EventTriggerType.PointerUp;
-            onEndDragEntry.callback.AddListener(new Action<BaseEventData>((data) => { self.OnPointerUp(data.Cast<PointerEventData>());}));
+            onEndDragEntry.callback.AddListener(new Action<BaseEventData>((data) => { OnPointerUp(data.Cast<PointerEventData>());}));
             eventTrigger.triggers.Add(onEndDragEntry);
 
             var onScrollEntry = new EventTrigger.Entry();
             onScrollEntry.eventID = EventTriggerType.Scroll;
-            onScrollEntry.callback.AddListener(new Action<BaseEventData>((data) => { self.OnScroll(data.Cast<PointerEventData>()); }));
+            onScrollEntry.callback.AddListener(new Action<BaseEventData>((data) => { OnScroll(data.Cast<PointerEventData>()); }));
             eventTrigger.triggers.Add(onScrollEntry);
         }
     }

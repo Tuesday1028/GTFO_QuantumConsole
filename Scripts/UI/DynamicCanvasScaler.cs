@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Il2CppInterop.Runtime.Attributes;
+using UnityEngine;
 using UnityEngine.UI;
 using RangeAttribute = System.ComponentModel.DataAnnotations.RangeAttribute;
 
@@ -70,10 +71,11 @@ namespace Hikaria.QC.UI
             }
         }
 
-        internal static void Setup(DynamicCanvasScaler self, CanvasScaler canvasScaler, RectTransform containerRect)
+        [HideFromIl2Cpp]
+        internal void Setup(CanvasScaler canvasScaler, RectTransform containerRect)
         {
-            self._scaler = canvasScaler;
-            self._uiRoot = containerRect;
+            _scaler = canvasScaler;
+            _uiRoot = containerRect;
         }
     }
 }

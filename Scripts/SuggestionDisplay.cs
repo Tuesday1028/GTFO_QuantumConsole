@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Il2CppInterop.Runtime.Attributes;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,16 +10,17 @@ namespace Hikaria.QC
         private QuantumConsole _quantumConsole = null;
         private TextMeshProUGUI _textArea = null;
 
-        internal static void Setup(SuggestionDisplay self, QuantumConsole console, TextMeshProUGUI textArea)
+        [HideFromIl2Cpp]
+        internal void Setup(QuantumConsole console, TextMeshProUGUI textArea)
         {
-            self._quantumConsole = console;
-            self._textArea = textArea;
+            _quantumConsole = console;
+            _textArea = textArea;
 
-            var eventTrigger = self.gameObject.AddComponent<EventTrigger>();
+            var eventTrigger = gameObject.AddComponent<EventTrigger>();
 
             var onPointerClickEntry = new EventTrigger.Entry();
             onPointerClickEntry.eventID = EventTriggerType.PointerClick;
-            onPointerClickEntry.callback.AddListener(new Action<BaseEventData>((data) => { self.OnPointerClick(data.Cast<PointerEventData>()); }));
+            onPointerClickEntry.callback.AddListener(new Action<BaseEventData>((data) => { OnPointerClick(data.Cast<PointerEventData>()); }));
             eventTrigger.triggers.Add(onPointerClickEntry);
         }
 

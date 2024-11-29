@@ -2,20 +2,6 @@
 using TheArchive.Loader;
 using UnityEngine;
 
-
-#region Preserve Fix
-#if UNITY_2018_4_OR_NEWER
-#else
-/// <summary>
-///   <para>PreserveAttribute prevents byte code stripping from removing a class, method, field, or property.</para>
-/// </summary>
-[AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Enum | AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Event | AttributeTargets.Interface | AttributeTargets.Delegate, Inherited = false)]
-public sealed class PreserveAttribute : Attribute
-{
-}
-#endif
-#endregion
-
 namespace Hikaria.QC
 {
     [Il2CppImplements(typeof(ISerializationCallbackReceiver))]
@@ -49,6 +35,8 @@ namespace Hikaria.QC
         public Color Color = Color.white;
 
         public TypeColorFormatter(Type type) : base(type) { }
+
+        public TypeColorFormatter(IntPtr ptr) : base(ptr) { }
     }
 
     public class CollectionFormatter : TypeFormatter
@@ -58,5 +46,7 @@ namespace Hikaria.QC
         public string RightScoper = "]";
 
         public CollectionFormatter(Type type) : base(type) { }
+
+        public CollectionFormatter(IntPtr ptr) : base(ptr) { }
     }
 }

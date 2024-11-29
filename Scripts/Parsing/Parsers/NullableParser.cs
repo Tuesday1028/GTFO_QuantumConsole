@@ -6,7 +6,7 @@ namespace Hikaria.QC.Parsers
 
         public override object Parse(string value, Type type)
         {
-            if (value == "null")
+            if (value.Equals("null", StringComparison.OrdinalIgnoreCase))
             {
                 return null;
             }

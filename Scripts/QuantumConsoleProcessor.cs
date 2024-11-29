@@ -2,8 +2,8 @@
 #define THREADS_SUPPORTED
 #endif
 
-using Hikaria.QC.Internal;
 using Hikaria.QC.Bootstrap;
+using Hikaria.QC.Internal;
 using Hikaria.QC.Utilities;
 using System.Collections.Concurrent;
 using System.Reflection;
@@ -264,6 +264,29 @@ namespace Hikaria.QC
                 if (member.DeclaringType == type)
                 {
                     LoadCommandsFromMember(member, method);
+                }
+            }
+
+            if (type.IsClass && !type.IsAbstract && type.IsSubclassOf(typeof(ACommandBase)))
+            {
+                var methodInfo = type.GetMethod(nameof(CommandBase.Execute));
+                if (methodInfo != null)
+                {
+                    var commandInstance = (ACommandBase)Activator.CreateInstance(type);
+                    var commandAttribute = new CommandAttribute(commandInstance.CommandName, commandInstance.MonoTarget, commandInstance.SupportedPlatforms);
+                    if (!commandAttribute.Valid)
+                    {
+                        Logs.LogWarning(QuantumConsoleBootstrap.Localization.Format(81, commandAttribute.Alias));
+                        return;
+                    }
+                    var commandDescription = new CommandDescriptionAttribute(commandInstance.Description);
+                    var commandParameterDescriptions = commandInstance.ParameterDescriptions.Select(desc => new CommandParameterDescriptionAttribute(desc)).ToArray();
+                    int defaultParameters = methodInfo.GetParameters().Count(x => x.HasDefaultValue);
+                    for (int i = 0; i < defaultParameters + 1; i++)
+                    {
+                        TryAddCommand(new CommandData(methodInfo, commandAttribute, commandDescription, i, commandParameterDescriptions));
+                    }
+                    QuantumRegistry.RegisterObject(type, commandInstance);
                 }
             }
         }

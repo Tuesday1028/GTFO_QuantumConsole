@@ -89,7 +89,7 @@ namespace Hikaria.QC
         private bool _storeAdjacentDuplicateCommands = false;
         private int _commandHistorySize = 30;
 
-        private int _maxStoredLogs = 1024;
+        private int _maxStoredLogs = 768;
         private int _maxLogSize = 8192;
         private bool _showInitLogs = true;
 
@@ -955,6 +955,14 @@ namespace Hikaria.QC
                 {
                     _consoleLogText.text = _logStorage.GetLogString();
                 }
+                else if (_scrollRect.verticalNormalizedPosition == 1f)
+                {
+                    _consoleLogText.text = _logStorage.GetLogString();
+                    LayoutRebuilder.ForceRebuildLayoutImmediate(_scrollRect.content);
+
+                    _anchoredPos.Set(0f, -_scrollRect.content.sizeDelta.y);
+                    _scrollRect.SetContentAnchoredPosition(_anchoredPos);
+                }
                 else
                 {
                     _prePos = _scrollRect.content.anchoredPosition.y;
@@ -965,6 +973,9 @@ namespace Hikaria.QC
 
                     _anchoredPos.Set(0f, _prePos + _preSize - _scrollRect.content.sizeDelta.y);
                     _scrollRect.SetContentAnchoredPosition(_anchoredPos);
+
+
+                    //TODO: 未处理已达到最大大小的情况
                 }
             }
         }
@@ -1061,16 +1072,16 @@ namespace Hikaria.QC
             var consoleRect = transform.FindChild("ConsoleRect");
             _containerRect = consoleRect.GetComponent<RectTransform>();
             var dynamicCanvasScaler = gameObject.AddComponent<DynamicCanvasScaler>();
-            DynamicCanvasScaler.Setup(dynamicCanvasScaler, GetComponent<CanvasScaler>(), _containerRect);
+            dynamicCanvasScaler.Setup(GetComponent<CanvasScaler>(), _containerRect);
             var console = consoleRect.FindChild("Console");
             var blurShaderController = gameObject.AddComponent<BlurShaderController>();
-            BlurShaderController.Setup(blurShaderController, _theme.PanelMaterial);
+            blurShaderController.Setup(_theme.PanelMaterial);
             _scrollRect = console.GetComponent<ScrollRect>();
             var resizeableUI = console.FindChild("Resize Anchor").gameObject.AddComponent<ResizableUI>();
-            ResizableUI.Setup(resizeableUI, _containerRect, gameObject.GetComponent<Canvas>());
+            resizeableUI.Setup(_containerRect, gameObject.GetComponent<Canvas>());
             var consoleView = console.FindChild("Console View");
             var draggableUI = consoleView.gameObject.AddComponent<DraggableUI>();
-            DraggableUI.Setup(draggableUI, _containerRect, this, _scrollRect);
+            draggableUI.Setup(_containerRect, this, _scrollRect);
             _consoleLogText = consoleView.FindChild("View Port/Text").GetComponent<TextMeshProUGUI>();
             _consoleLogText.fontSize = 14;
             _consoleLogText.maxVisibleLines = int.MaxValue;
@@ -1081,7 +1092,7 @@ namespace Hikaria.QC
             _suggestionPopupText = popup.FindChild("Text").GetComponent<TextMeshProUGUI>();
             _suggestionPopupText.fontSize = 16;
             var suggestionDisplay = popup.gameObject.AddComponent<SuggestionDisplay>();
-            SuggestionDisplay.Setup(suggestionDisplay, this, _suggestionPopupText);
+            suggestionDisplay.Setup(this, _suggestionPopupText);
             var ioBar = consoleRect.FindChild("IOBar");
             var jobCounter = ioBar.FindChild("JobCounter");
             _jobCounterRect = jobCounter.GetComponent<RectTransform>();
@@ -1096,7 +1107,7 @@ namespace Hikaria.QC
             zoomSizeUpButton.onClick.AddListener(new Action(zoomUIController.ZoomUp));
             var zoomSizeDownButton = uiControlTab.FindChild("Zoom-").GetComponent<Button>();
             zoomSizeDownButton.onClick.AddListener(new Action(zoomUIController.ZoomDown));
-            ZoomUIController.Setup(zoomUIController, zoomSizeDownButton, zoomSizeUpButton, dynamicCanvasScaler, this, uiControlTab.FindChild("Text").GetComponent<TextMeshProUGUI>());
+            zoomUIController.Setup(zoomSizeDownButton, zoomSizeUpButton, dynamicCanvasScaler, this, uiControlTab.FindChild("Text").GetComponent<TextMeshProUGUI>());
             _submitButtonText = ioBar.FindChild("Submit/Text").GetComponent<TextMeshProUGUI>();
             _clearButtonText = ioBar.FindChild("Clear/Text").GetComponent<TextMeshProUGUI>();
             _closeButtonText = ioBar.FindChild("Close/Text").GetComponent<TextMeshProUGUI>();
@@ -1266,7 +1277,7 @@ namespace Hikaria.QC
         /// <param name="shouldFocus">If the input field should be automatically focused.</param>
         public void Activate(bool shouldFocus)
         {
-            if (PlayerChatManager.InChatMode)
+            if (PlayerChatManager.InChatMode || InputMapper.Current.m_currentState == eFocusState.Console)
                 return;
 
             Initialize();

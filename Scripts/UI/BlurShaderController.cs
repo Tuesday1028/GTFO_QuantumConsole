@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Il2CppInterop.Runtime.Attributes;
+using UnityEngine;
 
 namespace Hikaria.QC.UI
 {
@@ -8,9 +9,10 @@ namespace Hikaria.QC.UI
         private float _blurRadius = 1f;
         private Vector2 _referenceResolution = new Vector2(1920, 1080);
 
-        internal static void Setup(BlurShaderController self, Material panelMaterial)
+        [HideFromIl2Cpp]
+        internal void Setup(Material panelMaterial)
         {
-            self._blurMaterial = panelMaterial;
+            _blurMaterial = panelMaterial;
         }
 
         private void LateUpdate()

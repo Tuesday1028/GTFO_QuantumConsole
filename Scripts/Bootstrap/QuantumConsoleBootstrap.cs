@@ -30,8 +30,7 @@ namespace Hikaria.QC.Bootstrap
         public static QuantumConsoleSettings Settings { get; set; }
         public class QuantumConsoleSettings
         {
-            [FSHeader("BepInEx 设置")]
-            [FSDisplayName("日志监听级别")]
+            [FSDisplayName("BepInEx 日志监听级别")]
             public List<LogLevel> BIEListenLevel
             {
                 get
@@ -49,6 +48,13 @@ namespace Hikaria.QC.Bootstrap
                     }
                 }
             }
+
+            [FSDisplayName("按键设置")]
+
+            public QuantumKeyConfig KeyConfig { get; set; } = QuantumKeyConfig.DefaultKeyConfig();
+
+            [FSDisplayName("终端设置")]
+            public QuantumSettings ConsoleSettings { get;set; } = QuantumSettings.DefaultSettings();
 
             public static BepInEx.Logging.LogLevel BIELogLevel => _bieLogLevel;
             private static BepInEx.Logging.LogLevel _bieLogLevel = BepInEx.Logging.LogLevel.Message | BepInEx.Logging.LogLevel.Warning | BepInEx.Logging.LogLevel.Error | BepInEx.Logging.LogLevel.Fatal;
@@ -84,6 +90,9 @@ namespace Hikaria.QC.Bootstrap
 
             public static void Init()
             {
+                if (Instance != null)
+                    return;
+
                 Instance = new();
 
                 if (!Settings.BIEListenLevel.Any())
@@ -170,6 +179,8 @@ namespace Hikaria.QC.Bootstrap
                     LoaderWrapper.ClassInjector.RegisterTypeInIl2Cpp<SuggestionDisplay>();
 
                     LoaderWrapper.ClassInjector.RegisterTypeInIl2Cpp<TypeFormatter>();
+                    LoaderWrapper.ClassInjector.RegisterTypeInIl2Cpp<TypeColorFormatter>();
+                    LoaderWrapper.ClassInjector.RegisterTypeInIl2Cpp<CollectionFormatter>();
 
                     string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets/quantumconsole");
                     AssetBundle assetBundle = AssetBundle.LoadFromFile(path);
@@ -183,7 +194,6 @@ namespace Hikaria.QC.Bootstrap
                         }
                     }
                     UnityEngine.Object.Instantiate(GetLoadedAsset("Assets/Plugins/QFSW/Quantum Console/Source/Prefabs/Quantum Console.prefab").Cast<GameObject>()).AddComponent<QuantumConsole>();
-
                     _inited = true;
                 }
             }
@@ -194,10 +204,7 @@ namespace Hikaria.QC.Bootstrap
         {
             private static void Prefix(ref bool value)
             {
-                if (QuantumConsole.Instance == null)
-                    return;
-
-                if (QuantumConsole.Instance.IsActive)
+                if (QuantumConsole.Instance?.IsActive ?? false)
                 {
                     value = true;
                 }
@@ -209,10 +216,7 @@ namespace Hikaria.QC.Bootstrap
         {
             private static void Prefix(ref CursorLockMode value)
             {
-                if (QuantumConsole.Instance == null)
-                    return;
-
-                if (QuantumConsole.Instance.IsActive)
+                if (QuantumConsole.Instance?.IsActive ?? false)
                 {
                     value = CursorLockMode.None;
                 }
@@ -224,78 +228,54 @@ namespace Hikaria.QC.Bootstrap
         {
             private static bool Prefix(ref float __result)
             {
-                bool flag = Cursor.lockState > CursorLockMode.None;
-                bool result;
-                if (flag)
-                {
-                    result = true;
-                }
-                else
+                if (Cursor.lockState == CursorLockMode.None || (QuantumConsole.Instance?.IsActive ?? false))
                 {
                     __result = 0f;
-                    result = false;
+                    return false;
                 }
-                return result;
+                return true;
             }
         }
 
         [ArchivePatch(typeof(InputMapper), nameof(InputMapper.DoGetButton))]
         private class InputMapper__DoGetButton__Patch
         {
-            private static bool Prefix(bool __result)
+            private static bool Prefix(ref bool __result)
             {
-                bool flag = Cursor.lockState > CursorLockMode.None;
-                bool result;
-                if (flag)
-                {
-                    result = true;
-                }
-                else
+                if (Cursor.lockState == CursorLockMode.None || (QuantumConsole.Instance?.IsActive ?? false))
                 {
                     __result = false;
-                    result = false;
+                    return false;
                 }
-                return result;
+                return true;
             }
         }
 
         [ArchivePatch(typeof(InputMapper), nameof(InputMapper.DoGetButtonDown))]
         private class InputMapper__DoGetButtonDown__Patch
         {
-            private static bool Prefix(bool __result)
+            private static bool Prefix(ref bool __result)
             {
-                bool flag = Cursor.lockState > CursorLockMode.None;
-                bool result;
-                if (flag)
-                {
-                    result = true;
-                }
-                else
+                if (Cursor.lockState == CursorLockMode.None || (QuantumConsole.Instance?.IsActive ?? false))
                 {
                     __result = false;
-                    result = false;
+                    return false;
                 }
-                return result;
+                return true;
             }
         }
 
         [ArchivePatch(typeof(InputMapper), nameof(InputMapper.DoGetButtonUp))]
         private class InputMapper__DoGetButtonUp__Patch
         {
-            private static bool Prefix(bool __result)
+            private static bool Prefix(ref bool __result)
             {
-                bool flag = Cursor.lockState > CursorLockMode.None;
-                bool result;
-                if (flag)
-                {
-                    result = true;
-                }
-                else
+                if (Cursor.lockState == CursorLockMode.None || (QuantumConsole.Instance?.IsActive ?? false))
                 {
                     __result = false;
-                    result = false;
+                    return false;
                 }
-                return result;
+                return true;
             }
         }
     }
