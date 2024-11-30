@@ -1,7 +1,6 @@
 ﻿using Il2CppInterop.Runtime.Attributes;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace Hikaria.QC.UI
 {
@@ -9,7 +8,6 @@ namespace Hikaria.QC.UI
     {
         private RectTransform _resizeRoot = null;
         private Canvas _resizeCanvas = null;
-        private Button _resizeButton = null;
 
         private bool _lockInScreen = true;
         private Vector2 _minSize = new(500, 125);

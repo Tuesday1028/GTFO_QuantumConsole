@@ -57,16 +57,8 @@ namespace Hikaria.QC
                     if (!foundParams.ContainsKey(param.Name)) { foundParams.Add(param.Name, param); }
                     if (!foundParamDescriptions.ContainsKey(param.Name))
                     {
-                        if (currentCommand.ParameterDescriptions?.Any() ?? false)
-                        {
-                            CommandParameterDescriptionAttribute descriptionAttribute = new CommandParameterDescriptionAttribute(currentCommand.ParameterDescriptions[j]);
-                            if (descriptionAttribute != null && descriptionAttribute.Valid) { foundParamDescriptions.Add(param.Name, descriptionAttribute); }
-                        }
-                        else
-                        {
-                            CommandParameterDescriptionAttribute descriptionAttribute = param.GetCustomAttribute<CommandParameterDescriptionAttribute>();
-                            if (descriptionAttribute != null && descriptionAttribute.Valid) { foundParamDescriptions.Add(param.Name, descriptionAttribute); }
-                        }
+                        CommandParameterDescriptionAttribute descriptionAttribute = param.GetCustomAttribute<CommandParameterDescriptionAttribute>();
+                        if (descriptionAttribute != null && descriptionAttribute.Valid) { foundParamDescriptions.Add(param.Name, descriptionAttribute); }
                     }
                 }
 

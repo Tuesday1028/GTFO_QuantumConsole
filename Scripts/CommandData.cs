@@ -17,7 +17,6 @@ namespace Hikaria.QC
         public readonly string ParameterSignature;
         public readonly string GenericSignature;
 
-        public readonly string[] ParameterDescriptions;
         public readonly ParameterInfo[] MethodParamData;
         public readonly Type[] ParamTypes;
         public readonly Type[] GenericParamTypes;
@@ -270,7 +269,6 @@ namespace Hikaria.QC
             ParamTypes = MethodParamData
                 .Select(x => x.ParameterType)
                 .ToArray();
-            ParameterDescriptions = MethodParamData.Select(data => data.GetCustomAttribute<CommandParameterDescriptionAttribute>()?.Description ?? string.Empty).ToArray();
 
             _defaultParameters = new object[defaultParameterCount];
             for (int i = 0; i < defaultParameterCount; i++)
@@ -298,34 +296,12 @@ namespace Hikaria.QC
             CommandDescription = commandAttribute.Description;
         }
 
-        public CommandData(MethodInfo methodData, CommandAttribute commandAttribute, CommandDescriptionAttribute descriptionAttribute, int defaultParameterCount = 0, IEnumerable<CommandParameterDescriptionAttribute> parameterDescriptionAttributes = null)
+        public CommandData(MethodInfo methodData, CommandAttribute commandAttribute, CommandDescriptionAttribute descriptionAttribute, int defaultParameterCount = 0)
             : this(methodData, commandAttribute, defaultParameterCount)
         {
             if ((descriptionAttribute?.Valid ?? false) && string.IsNullOrWhiteSpace(commandAttribute.Description))
             {
                 CommandDescription = descriptionAttribute.Description;
-            }
-
-            if (parameterDescriptionAttributes != null)
-            {
-                var parameterDescription = new List<string>();
-                bool isValidParameterDescription = false;
-                foreach (var parameterDescriptionAttribute in parameterDescriptionAttributes)
-                {
-                    if (parameterDescriptionAttribute?.Valid ?? false)
-                    {
-                        parameterDescription.Add(parameterDescriptionAttribute.Description);
-                        isValidParameterDescription = true;
-                    }
-                    else
-                    {
-                        parameterDescription.Add(string.Empty);
-                    }
-                }
-                if (isValidParameterDescription)
-                {
-                    ParameterDescriptions = parameterDescription.ToArray();
-                }
             }
         }
     }

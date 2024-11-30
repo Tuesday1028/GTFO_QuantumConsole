@@ -3,6 +3,7 @@ using Hikaria.QC.Logging;
 using Hikaria.QC.Pooling;
 using Hikaria.QC.UI;
 using Hikaria.QC.Utilities;
+using Il2CppInterop.Runtime;
 using System.Text;
 using TheArchive.Core.Localization;
 using TMPro;
@@ -119,7 +120,7 @@ namespace Hikaria.QC
         private TextMeshProUGUI _clearButtonText;
         private TextMeshProUGUI _closeButtonText;
 
-        private static Action<string, string, LogType> _logMessageReceivedThreadedAction;
+        private static Application.LogCallback _unityLogCallback;
 
         /// <summary>
         /// The maximum number of logs that may be stored in the log storage before old logs are removed.
@@ -1197,14 +1198,14 @@ namespace Hikaria.QC
         {
             QuantumConsoleBootstrap.Localization.AddTextUpdater(this);
             SetupComponents();
-            _logMessageReceivedThreadedAction = DebugIntercept;
+            _unityLogCallback = DelegateSupport.ConvertDelegate<Application.LogCallback>(DebugIntercept);
             InitializeLogging();
         }
 
         private void OnEnable()
         {
             QuantumRegistry.RegisterObject(this);
-            Application.add_logMessageReceivedThreaded(_logMessageReceivedThreadedAction);
+            Application.add_logMessageReceived(_unityLogCallback);
 
             if (IsSupportedState())
             {
@@ -1252,7 +1253,7 @@ namespace Hikaria.QC
         private void OnDisable()
         {
             QuantumRegistry.DeregisterObject(this);
-            Application.remove_logMessageReceivedThreaded(_logMessageReceivedThreadedAction);
+            Application.remove_logMessageReceivedThreaded(_unityLogCallback);
 
             Deactivate();
         }
@@ -1260,7 +1261,7 @@ namespace Hikaria.QC
         private void OnDestroy()
         {
             QuantumConsoleBootstrap.Localization.RemoveTextUpdater(this);
-            _logMessageReceivedThreadedAction = null;
+            _unityLogCallback = null;
         }
 
         private void DisableQC()

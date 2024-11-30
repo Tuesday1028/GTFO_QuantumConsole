@@ -61,7 +61,7 @@ namespace Hikaria.QC
                     }
                     catch (Exception e)
                     {
-                        Logs.LogError($"{parser.GetType().GetDisplayName()}.CanParse is malformed and throws");
+                        Logs.LogError(QuantumConsoleBootstrap.Localization.Format(93, $"{parser.GetType().GetDisplayName()}.CanParse"));
                         Logs.LogException(e);
                     }
                 }
@@ -90,7 +90,7 @@ namespace Hikaria.QC
                 }
                 catch (Exception e)
                 {
-                    Logs.LogError($"{grammar.GetType().GetDisplayName()}.Match is malformed and throws");
+                    Logs.LogError(QuantumConsoleBootstrap.Localization.Format(93, $"{grammar.GetType().GetDisplayName()}.Match"));
                     Logs.LogException(e);
                 }
             }
@@ -134,14 +134,14 @@ namespace Hikaria.QC
                 catch (ParserException) { throw; }
                 catch (Exception e)
                 {
-                    throw new Exception($"Parsing of {type.GetDisplayName()} via {grammar} failed:\n{e.Message}", e);
+                    throw new Exception(QuantumConsoleBootstrap.Localization.Format(94, type.GetDisplayName(), grammar, e.Message), e);
                 }
             }
 
             IQcParser parser = GetParser(type);
             if (parser == null)
             {
-                throw new ArgumentException($"Cannot parse object of type '{type.GetDisplayName()}'");
+                throw new ArgumentException(QuantumConsoleBootstrap.Localization.Format(95, type.GetDisplayName()));
             }
 
             try
@@ -151,7 +151,7 @@ namespace Hikaria.QC
             catch (ParserException) { throw; }
             catch (Exception e)
             {
-                throw new Exception($"Parsing of {type.GetDisplayName()} via {parser} failed:\n{e.Message}", e);
+                throw new Exception(QuantumConsoleBootstrap.Localization.Format(94, type.GetDisplayName(), parser, e.Message), e);
             }
         }
 
