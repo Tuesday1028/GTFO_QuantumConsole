@@ -29,10 +29,1005 @@
           "Polish": null,
           "Japanese": null,
           "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsoleSettings.KeySettings": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsoleSettings.ConsoleThemeSettings": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsoleSettings.ConsolePrefSettings": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumThemeSettings.FontAssetPath": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumThemeSettings.PanelMaterialAssetPath": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumThemeSettings.TimestampFormat": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumThemeSettings.CommandLogFormat": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumThemeSettings.PanelColor": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
         },
         "FSHeader": {
-          "English": "BepInEx Settings",
-          "Chinese": "BepInEx 设置",
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumThemeSettings.CommandLogColor": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumThemeSettings.SelectedSuggestionColor": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumThemeSettings.SuggestionColor": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumThemeSettings.FatalColor": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumThemeSettings.ErrorColor": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumThemeSettings.WarningColor": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumThemeSettings.MessageColor": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumThemeSettings.InfoColor": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumThemeSettings.DebugColor": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.VerboseErrors": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        },
+        "FSHeader": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.VerboseLogging": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.LoggingLevel": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.OpenOnLogLevel": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.InterceptDebugLogger": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.InterceptWhilstInactive": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.PrependTimestamps": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.MaxStoredLogs": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.MaxLogSize": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.LogFontSize": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.ShowInitLogs": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.ActivateOnStartup": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        },
+        "FSHeader": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.FocusOnActivate": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.CloseOnSubmit": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.AutoScroll": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.EnableAutocomplete": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        },
+        "FSHeader": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.ShowPopupDisplay": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.SuggestionDisplayOrder": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.SuggestionFontSize": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.MaxSuggestionDisplaySize": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.UseFuzzySearch": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.CaseSensitiveSearch": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.CollapseSuggestionOverloads": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.ShowCurrentJobs": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        },
+        "FSHeader": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.BlockOnAsync": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.StoreCommandHistory": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        },
+        "FSHeader": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.StoreDuplicateCommands": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.StoreAdjacentDuplicateCommands": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumConsolePreferenceSettings.CommandHistorySize": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumKeySettings.SubmitCommandKey": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumKeySettings.ShowConsoleKey": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumKeySettings.HideConsoleKey": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumKeySettings.ToggleConsoleVisibilityKey": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumKeySettings.ZoomInKey": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumKeySettings.ZoomOutKey": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumKeySettings.DragConsoleKey": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumKeySettings.SelectNextSuggestionKey": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumKeySettings.SelectPreviousSuggestionKey": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumKeySettings.NextCommandKey": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumKeySettings.PreviousCommandKey": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+QuantumKeySettings.CancelActionsKey": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+KeyCombo.Key": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+KeyCombo.Ctrl": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+KeyCombo.Alt": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
+          "French": null,
+          "Italian": null,
+          "German": null,
+          "Spanish": null,
+          "Russian": null,
+          "Portuguese_Brazil": null,
+          "Polish": null,
+          "Japanese": null,
+          "Korean": null
+        }
+      },
+      "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap+KeyCombo.Shift": {
+        "FSDisplayName": {
+          "English": null,
+          "Chinese": null,
           "French": null,
           "Italian": null,
           "German": null,
@@ -152,7 +1147,7 @@
         "ID": 12,
         "Languages": {
           "English": "Welcome to Quantum Console! In order to see specific help about any specific command, please use the 'manual' command. Use 'help manual' to see more about the manual command. To see a full list of all commands, use 'all-commands'.\n\nmono-targets\nVarious commands may show a mono-target in their command signature.\nThis means they are not static commands, and instead requires instance(s) of the class in order to invoke the command.\nEach mono-target works differently as follows:\n - single: uses the first instance of the type found in the scene\n - all: uses all instances of the type found in the scene\n - registry: uses all instances of the type found in the registry\n - singleton: creates and manages a single instance automatically\n\nThe registry is a part of the Quantum Registry that allows you to decide which specific instances of the class should be used when invoking the command. In order to add an object to the registry, either use Hikaria.QC.QuantumRegistry.RegisterObject<T> or the runtime command 'register-object<T>'.",
-          "Chinese": "欢迎使用量子控制台！为了查看有关任何特定指令的帮助，请使用'manual'指令。使用'help manual'可以查看更多关于 manual 指令的信息。要查看所有指令的完整列表，请使用'all-commands'。\n\nmono-targets\n各种指令可能会在其指令签名中显示一个 mono-target。这意味着它们不是静态指令，而是需要实例化类的实例才能调用该指令。\n每个 mono-target 的工作方式如下：\n - single：使用场景中找到的第一个类型实例\n - all：使用场景中所有类型实例\n - registry：使用注册表中的所有类型实例\n - singleton：自动创建和管理一个单一实例\n\n注册表是量子注册表的一部分，允许你决定在调用指令时使用特定的类实例。要将对象添加到注册表中，可以使用 Hikaria.QC.QuantumRegistry.RegisterObject<T> 或运行时指令 register-object<T>。"
+          "Chinese": "欢迎使用量子控制台！为了查看有关任何特定指令的帮助，请使用'manual'指令。使用'help manual'可以查看更多关于 manual 指令的信息。要查看所有指令的完整列表，请使用'all-commands'。\n\nmono-targets\n各种指令可能会在其指令签名中显示一个 mono-target。这意味着它们不是静态指令，而是需要实例化类的实例才能调用该指令。\n每个 mono-target 的工作方式如下：\n - single：使用场景中找到的第一个类型实例\n - all：使用场景中所有类型实例\n - registry：使用注册表中的所有类型实例\n - singleton：自动创建和管理一个单一实例\n\nregistry 是量子注册表的一部分，允许你决定在调用指令时使用特定的类实例。要将对象添加到注册表中，可以使用 Hikaria.QC.QuantumRegistry.RegisterObject<T> 或运行时指令 register-object<T>。"
         }
       },
       {
@@ -219,12 +1214,12 @@
         }
       },
       {
-        "UntranslatedText": "\n\nParameter descriptions:{0}",
+        "UntranslatedText": "\n\nParameter descriptions:",
         "Description": "manualText",
         "ID": 20,
         "Languages": {
-          "English": "\n\nParameter descriptions:{0}",
-          "Chinese": "\n\n参数描述：{0}"
+          "English": "\n\nParameter descriptions:",
+          "Chinese": "\n\n参数描述："
         }
       },
       {
@@ -865,12 +1860,133 @@
           "English": "Registry may only contain class types",
           "Chinese": "注册表只能包含 class 类型。"
         }
+      },
+      {
+        "UntranslatedText": "Cannot set suggestion to index {0}.",
+        "Description": "SetSuggestion",
+        "ID": 92,
+        "Languages": {
+          "English": "Cannot set suggestion to index {0}.",
+          "Chinese": "无法将建议设置为索引 {0}。"
+        }
       }
     ]
   },
   "External": {
     "ExternalFeatureSettingsTexts": {},
     "ExternalEnumTexts": {
+      "BepInEx.Logging.LogLevel": {
+        "English": {
+          "None": "None",
+          "Fatal": "Fatal",
+          "Error": "Error",
+          "Warning": "Warning",
+          "Message": "Message",
+          "Info": "Info",
+          "Debug": "Debug",
+          "All": null
+        },
+        "Chinese": {
+          "None": "无",
+          "Fatal": "关键错误",
+          "Error": "错误",
+          "Warning": "警告",
+          "Message": "消息",
+          "Info": "信息",
+          "Debug": "调试",
+          "All": "所有"
+        },
+        "French": {
+          "None": null,
+          "Fatal": null,
+          "Error": null,
+          "Warning": null,
+          "Message": null,
+          "Info": null,
+          "Debug": null,
+          "All": null
+        },
+        "Italian": {
+          "None": null,
+          "Fatal": null,
+          "Error": null,
+          "Warning": null,
+          "Message": null,
+          "Info": null,
+          "Debug": null,
+          "All": null
+        },
+        "German": {
+          "None": null,
+          "Fatal": null,
+          "Error": null,
+          "Warning": null,
+          "Message": null,
+          "Info": null,
+          "Debug": null,
+          "All": null
+        },
+        "Spanish": {
+          "None": null,
+          "Fatal": null,
+          "Error": null,
+          "Warning": null,
+          "Message": null,
+          "Info": null,
+          "Debug": null,
+          "All": null
+        },
+        "Russian": {
+          "None": null,
+          "Fatal": null,
+          "Error": null,
+          "Warning": null,
+          "Message": null,
+          "Info": null,
+          "Debug": null,
+          "All": null
+        },
+        "Portuguese_Brazil": {
+          "None": null,
+          "Fatal": null,
+          "Error": null,
+          "Warning": null,
+          "Message": null,
+          "Info": null,
+          "Debug": null,
+          "All": null
+        },
+        "Polish": {
+          "None": null,
+          "Fatal": null,
+          "Error": null,
+          "Warning": null,
+          "Message": null,
+          "Info": null,
+          "Debug": null,
+          "All": null
+        },
+        "Japanese": {
+          "None": null,
+          "Fatal": null,
+          "Error": null,
+          "Warning": null,
+          "Message": null,
+          "Info": null,
+          "Debug": null,
+          "All": null
+        },
+        "Korean": {
+          "None": null,
+          "Fatal": null,
+          "Error": null,
+          "Warning": null,
+          "Message": null,
+          "Info": null,
+          "Debug": null,
+          "All": null
+        }
+      },
       "Hikaria.QC.LogLevel": {
         "English": {
           "None": "None",
@@ -981,6 +2097,109 @@
           "Info": null,
           "Debug": null,
           "All": null
+        }
+      },
+      "Hikaria.QC.AutoScrollOptions": {
+        "English": {
+          "Never": "Never",
+          "OnInvoke": "On Invoke",
+          "Always": "Always"
+        },
+        "Chinese": {
+          "Never": "从不",
+          "OnInvoke": "执行时",
+          "Always": "一直"
+        },
+        "French": {
+          "Never": null,
+          "OnInvoke": null,
+          "Always": null
+        },
+        "Italian": {
+          "Never": null,
+          "OnInvoke": null,
+          "Always": null
+        },
+        "German": {
+          "Never": null,
+          "OnInvoke": null,
+          "Always": null
+        },
+        "Spanish": {
+          "Never": null,
+          "OnInvoke": null,
+          "Always": null
+        },
+        "Russian": {
+          "Never": null,
+          "OnInvoke": null,
+          "Always": null
+        },
+        "Portuguese_Brazil": {
+          "Never": null,
+          "OnInvoke": null,
+          "Always": null
+        },
+        "Polish": {
+          "Never": null,
+          "OnInvoke": null,
+          "Always": null
+        },
+        "Japanese": {
+          "Never": null,
+          "OnInvoke": null,
+          "Always": null
+        },
+        "Korean": {
+          "Never": null,
+          "OnInvoke": null,
+          "Always": null
+        }
+      },
+      "Hikaria.QC.SortOrder": {
+        "English": {
+          "Ascending": "Ascending",
+          "Descending": "Descending"
+        },
+        "Chinese": {
+          "Ascending": "升序",
+          "Descending": "降序"
+        },
+        "French": {
+          "Ascending": null,
+          "Descending": null
+        },
+        "Italian": {
+          "Ascending": null,
+          "Descending": null
+        },
+        "German": {
+          "Ascending": null,
+          "Descending": null
+        },
+        "Spanish": {
+          "Ascending": null,
+          "Descending": null
+        },
+        "Russian": {
+          "Ascending": null,
+          "Descending": null
+        },
+        "Portuguese_Brazil": {
+          "Ascending": null,
+          "Descending": null
+        },
+        "Polish": {
+          "Ascending": null,
+          "Descending": null
+        },
+        "Japanese": {
+          "Ascending": null,
+          "Descending": null
+        },
+        "Korean": {
+          "Ascending": null,
+          "Descending": null
         }
       }
     }
