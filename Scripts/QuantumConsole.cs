@@ -1342,7 +1342,7 @@ namespace Hikaria.QC
         /// <param name="shouldFocus">If the input field should be automatically focused.</param>
         public void Activate(bool shouldFocus)
         {
-            if (PlayerChatManager.InChatMode || InputMapper.Current.m_currentState == eFocusState.ComputerTerminal)
+            if (PlayerChatManager.InChatMode)
                 return;
 
             Initialize();

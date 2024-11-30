@@ -3,6 +3,7 @@ using GameData;
 using Hikaria.QC.Extras;
 using Hikaria.QC.UI;
 using Hikaria.QC.Utilities;
+using LevelGeneration;
 using System.Reflection;
 using TheArchive.Core.Attributes;
 using TheArchive.Core.Attributes.Feature.Settings;
@@ -76,23 +77,23 @@ namespace Hikaria.QC.Bootstrap
             [FSHeader("颜色设置")]
             [FSDisplayName("面板")]
             public SColor PanelColor { get; set; } = Color.white;
-            [FSDisplayName("指令日志颜色")]
+            [FSDisplayName("指令日志")]
             public SColor CommandLogColor { get; set; } = Color.cyan;
-            [FSDisplayName("指令建议选中颜色")]
+            [FSDisplayName("指令建议选中")]
             public SColor SelectedSuggestionColor { get; set; } = new(1, 1, 0.55f);
-            [FSDisplayName("指令提示颜色")]
+            [FSDisplayName("指令")]
             public SColor SuggestionColor { get; set; } = Color.gray;
-            [FSDisplayName("关键错误颜色")]
+            [FSDisplayName("关键错误")]
             public SColor FatalColor { get; set; } = Color.red;
-            [FSDisplayName("错误颜色")]
+            [FSDisplayName("错误")]
             public SColor ErrorColor { get; set; } = Color.red;
-            [FSDisplayName("警告颜色")]
+            [FSDisplayName("警告")]
             public SColor WarningColor { get; set; } = Color.yellow;
-            [FSDisplayName("消息颜色")]
+            [FSDisplayName("消息")]
             public SColor MessageColor { get; set; } = Color.white;
-            [FSDisplayName("信息颜色")]
+            [FSDisplayName("信息")]
             public SColor InfoColor { get; set; } = ColorExtensions.DarkGray;
-            [FSDisplayName("调试颜色")]
+            [FSDisplayName("调试")]
             public SColor DebugColor { get; set; } = ColorExtensions.DarkGray;
 
 
@@ -432,6 +433,33 @@ namespace Hikaria.QC.Bootstrap
                     console.Preferences = Settings.ConsolePrefSettings;
                     _inited = true;
                 }
+            }
+        }
+
+        [ArchivePatch(typeof(PlayerChatManager), nameof(PlayerChatManager.UpdateTextChatInput))]
+        private class PlayerChatManager__UpdateTextChatInput__Patch
+        {
+            private static bool Prefix()
+            {
+                if (QuantumConsole.Instance?.IsActive ?? false)
+                {
+                    PlayerChatManager.ExitChatIfInChatMode();
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        [ArchivePatch(typeof(LG_TERM_PlayerInteracting), nameof(LG_TERM_PlayerInteracting.ParseInput))]
+        private class LG_TERM_PlayerInteracting__ParseInput__Patch
+        {
+            private static bool Prefix()
+            {
+                if (QuantumConsole.Instance?.IsActive ?? false)
+                {
+                    return false;
+                }
+                return true;
             }
         }
 
