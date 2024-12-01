@@ -42,7 +42,7 @@ namespace Hikaria.QC
             Dictionary<string, CommandParameterDescriptionAttribute> foundParamDescriptions = new Dictionary<string, CommandParameterDescriptionAttribute>();
             List<Type> declaringTypes = new List<Type>(1);
 
-            string manual = QuantumConsoleBootstrap.Localization.Format(15, commandName);;
+            string manual = QuantumConsoleBootstrap.Localization.Format(15, commandName);
 
             for (int i = 0; i < matchingCommands.Length; i++)
             {
@@ -57,8 +57,16 @@ namespace Hikaria.QC
                     if (!foundParams.ContainsKey(param.Name)) { foundParams.Add(param.Name, param); }
                     if (!foundParamDescriptions.ContainsKey(param.Name))
                     {
-                        CommandParameterDescriptionAttribute descriptionAttribute = param.GetCustomAttribute<CommandParameterDescriptionAttribute>();
-                        if (descriptionAttribute != null && descriptionAttribute.Valid) { foundParamDescriptions.Add(param.Name, descriptionAttribute); }
+                        if (currentCommand.TryGetLocalization(out var localization) && localization.ParameterDescriptions.TryGetValue(param.Name, out var parameterDescription) && !string.IsNullOrEmpty(parameterDescription))
+                        {
+                            CommandParameterDescriptionAttribute descriptionAttribute = new(parameterDescription);
+                            if (descriptionAttribute != null && descriptionAttribute.Valid) { foundParamDescriptions.Add(param.Name, descriptionAttribute); }
+                        }
+                        else
+                        {
+                            CommandParameterDescriptionAttribute descriptionAttribute = param.GetCustomAttribute<CommandParameterDescriptionAttribute>();
+                            if (descriptionAttribute != null && descriptionAttribute.Valid) { foundParamDescriptions.Add(param.Name, descriptionAttribute); }
+                        }
                     }
                 }
 
@@ -111,7 +119,12 @@ namespace Hikaria.QC
             for (int i = 0; i < matchingCommands.Length; i++)
             {
                 CommandData currentCommand = _commandTable[matchingCommands[i]];
-                if (currentCommand.HasDescription)
+                if (currentCommand.TryGetLocalization(out var localization) && !string.IsNullOrEmpty(localization.Description))
+                {
+                    manual += QuantumConsoleBootstrap.Localization.Format(19, localization.Description);
+                    i = matchingCommands.Length;
+                }
+                else if (currentCommand.HasDescription)
                 {
                     manual += QuantumConsoleBootstrap.Localization.Format(19, currentCommand.CommandDescription);
                     i = matchingCommands.Length;

@@ -3,6 +3,7 @@ using Hikaria.QC.Internal;
 using Hikaria.QC.Utilities;
 using System.Data;
 using System.Reflection;
+using TheArchive.Core.Localization;
 
 namespace Hikaria.QC
 {
@@ -16,6 +17,7 @@ namespace Hikaria.QC
         public readonly string CommandSignature;
         public readonly string ParameterSignature;
         public readonly string GenericSignature;
+        public readonly string LocalizationSignature;
 
         public readonly ParameterInfo[] MethodParamData;
         public readonly Type[] ParamTypes;
@@ -29,6 +31,23 @@ namespace Hikaria.QC
         public bool IsStatic => MethodData.IsStatic;
         public bool HasDescription => !string.IsNullOrWhiteSpace(CommandDescription);
         public int ParamCount => ParamTypes.Length - _defaultParameters.Length;
+
+        private Dictionary<Language, CommandLocalizationData> _localization;
+
+        internal void ApplyLocalization(Dictionary<Language, CommandLocalizationData> localization)
+        {
+            _localization = localization;
+        }
+
+        internal bool TryGetLocalization(out CommandLocalizationData localization)
+        {
+            return _localization.TryGetValue(QuantumConsoleBootstrap.Localization.CurrentLanguage, out localization);
+        }
+
+        internal bool TryGetLocalization(Language language, out CommandLocalizationData localization)
+        {
+            return _localization.TryGetValue(language, out localization);
+        }
 
         public Type[] MakeGenericArguments(params Type[] genericTypeArguments)
         {
@@ -240,6 +259,8 @@ namespace Hikaria.QC
 
         public CommandData(MethodInfo methodData, string commandName, MonoTargetType monoTarget, int defaultParameterCount = 0)
         {
+            _localization = new();
+
             CommandName = commandName;
             MethodData = methodData;
             MonoTarget = monoTarget;
@@ -284,6 +305,12 @@ namespace Hikaria.QC
             CommandSignature = ParamCount > 0
                 ? $"{CommandName}{GenericSignature} {ParameterSignature}"
                 : $"{CommandName}{GenericSignature}";
+
+            LocalizationSignature = MethodParamData.Length > 0 
+                ? $"{CommandName}{GenericSignature} {BuildParameterSignature(MethodParamData, 0)}"
+                : $"{CommandName}{GenericSignature}";
+
+            this.LoadCommandLocalizationData();
         }
 
         public CommandData(MethodInfo methodData, MonoTargetType monoTarget, int defaultParameterCount = 0)

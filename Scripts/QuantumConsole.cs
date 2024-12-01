@@ -120,8 +120,7 @@ namespace Hikaria.QC
         private TextMeshProUGUI _clearButtonText;
         private TextMeshProUGUI _closeButtonText;
 
-        private static Application.LogCallback _unityLogCallback;
-
+        private Application.LogCallback _logCallback;
         /// <summary>
         /// The maximum number of logs that may be stored in the log storage before old logs are removed.
         /// </summary>
@@ -1198,14 +1197,14 @@ namespace Hikaria.QC
         {
             QuantumConsoleBootstrap.Localization.AddTextUpdater(this);
             SetupComponents();
-            _unityLogCallback = DelegateSupport.ConvertDelegate<Application.LogCallback>(DebugIntercept);
             InitializeLogging();
+            _logCallback = DelegateSupport.ConvertDelegate<Application.LogCallback>(DebugIntercept);
+            Application.s_LogCallbackHandlerThreaded += _logCallback;
         }
 
         private void OnEnable()
         {
             QuantumRegistry.RegisterObject(this);
-            Application.add_logMessageReceived(_unityLogCallback);
 
             if (IsSupportedState())
             {
@@ -1253,15 +1252,13 @@ namespace Hikaria.QC
         private void OnDisable()
         {
             QuantumRegistry.DeregisterObject(this);
-            Application.remove_logMessageReceivedThreaded(_unityLogCallback);
-
             Deactivate();
         }
 
         private void OnDestroy()
         {
             QuantumConsoleBootstrap.Localization.RemoveTextUpdater(this);
-            _unityLogCallback = null;
+            Application.s_LogCallbackHandlerThreaded -= _logCallback;
         }
 
         private void DisableQC()

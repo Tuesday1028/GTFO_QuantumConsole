@@ -306,6 +306,7 @@ namespace Hikaria.QC.Bootstrap
         public override void Init()
         {
             BIELogListener.Init();
+            CommandLocalizationHelper.Init();
         }
 
         public override void OnEnable()
