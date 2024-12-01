@@ -30,28 +30,30 @@ namespace Hikaria.QC
                         _commandLocalizationLookup[assembly][kvp.Key] = kvp.Value;
                 }
             }
-
-            if (!_commandLocalizationLookup[assembly].TryGetValue(command.LocalizationSignature, out var localization))
-            {
-                localization = GenerateCommandLocalizationData(command);
-            }
-            command.ApplyLocalization(localization);
-            _commandLocalizationLookup[assembly][command.LocalizationSignature] = localization;
+            command.ApplyLocalization(CheckAndGenerateCommandLocalization(command));
         }
 
-        private static Dictionary<Language, CommandLocalizationData> GenerateCommandLocalizationData(CommandData command)
+        private static Dictionary<Language, CommandLocalizationData> CheckAndGenerateCommandLocalization(CommandData command)
         {
-            var localization = new Dictionary<Language, CommandLocalizationData>();
+            var assembly = command.MethodData.DeclaringType.Assembly;
+            if (!_commandLocalizationLookup[assembly].TryGetValue(command.LocalizationSignature, out var localization))
+                localization = new();
             foreach (var language in Enum.GetValues<Language>())
             {
-                if (!command.TryGetLocalization(language, out var data))
-                    data = new();
-                data.Description = command.CommandDescription;
-                data.ParameterDescriptions = new();
+                localization.TryGetValue(language, out var data);
+                data ??= new();
+                if (string.IsNullOrEmpty(data.Description))
+                    data.Description = command.CommandDescription;
+
+                data.ParameterDescriptions ??= new();
                 foreach (var info in command.MethodParamData)
-                    if (!data.ParameterDescriptions.ContainsKey(info.Name))
+                {
+                    data.ParameterDescriptions.TryGetValue(info.Name, out var desc);
+                    if (string.IsNullOrEmpty(desc))
                         data.ParameterDescriptions[info.Name] = info.GetCustomAttribute<CommandParameterDescriptionAttribute>()?.Description ?? null;
+                }
                 localization[language] = data;
+                _commandLocalizationLookup[assembly][command.LocalizationSignature] = localization;
             }
             return localization;
         }

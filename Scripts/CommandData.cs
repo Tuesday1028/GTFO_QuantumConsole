@@ -321,15 +321,17 @@ namespace Hikaria.QC
             : this(methodData, commandAttribute.Alias, commandAttribute.MonoTarget, defaultParameterCount)
         {
             CommandDescription = commandAttribute.Description;
+            this.LoadCommandLocalizationData();
         }
 
         public CommandData(MethodInfo methodData, CommandAttribute commandAttribute, CommandDescriptionAttribute descriptionAttribute, int defaultParameterCount = 0)
             : this(methodData, commandAttribute, defaultParameterCount)
         {
-            if ((descriptionAttribute?.Valid ?? false) && string.IsNullOrWhiteSpace(commandAttribute.Description))
+            if (descriptionAttribute?.Valid ?? false)
             {
                 CommandDescription = descriptionAttribute.Description;
             }
+            this.LoadCommandLocalizationData();
         }
     }
 }
