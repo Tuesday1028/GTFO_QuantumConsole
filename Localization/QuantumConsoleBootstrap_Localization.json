@@ -4,7 +4,7 @@
       "Hikaria.QC.Bootstrap.QuantumConsoleBootstrap.Name": {
         "FName": {
           "English": "Quantum Console Bootstrap",
-          "Chinese": "量子终端引导",
+          "Chinese": "量子控制台引导",
           "French": null,
           "Italian": null,
           "German": null,
@@ -1102,7 +1102,7 @@
         "ID": 7,
         "Languages": {
           "English": "Q:\\>Quantum Console Processor is initializing\nQ:\\>Table generation under progress\nQ:\\>{0} commands have been loaded",
-          "Chinese": "Q:\\>量子终端处理器已初始化\nQ:\\>正在加载指令列表\nQ:\\>已加载 {0} 条指令"
+          "Chinese": "Q:\\>量子控制台处理器已初始化\nQ:\\>正在加载指令列表\nQ:\\>已加载 {0} 条指令"
         }
       },
       {
@@ -1111,7 +1111,7 @@
         "ID": 8,
         "Languages": {
           "English": "Q:\\>Quantum Console Processor ready",
-          "Chinese": "Q:\\>量子终端处理器已就绪"
+          "Chinese": "Q:\\>量子控制台处理器已就绪"
         }
       },
       {
@@ -1868,6 +1868,33 @@
         "Languages": {
           "English": "Cannot set suggestion to index {0}.",
           "Chinese": "无法将建议设置为索引 {0}。"
+        }
+      },
+      {
+        "UntranslatedText": "{0} is malformed and throws",
+        "Description": "QuantumParser",
+        "ID": 93,
+        "Languages": {
+          "English": "{0} is malformed and throws",
+          "Chinese": "{0} 格式错误并抛出异常"
+        }
+      },
+      {
+        "UntranslatedText": "Parsing of {0} via {1} failed:\n{2}",
+        "Description": "QuantumParser",
+        "ID": 94,
+        "Languages": {
+          "English": "Parsing of {0} via {1} failed:\n{2}",
+          "Chinese": "通过 {1} 解析 {0} 失败：\n{2}"
+        }
+      },
+      {
+        "UntranslatedText": "Cannot parse object of type '{0}'",
+        "Description": "QuantumParser",
+        "ID": 95,
+        "Languages": {
+          "English": "Cannot parse object of type '{0}'",
+          "Chinese": "无法解析类型为 '{0}' 的对象"
         }
       }
     ]
