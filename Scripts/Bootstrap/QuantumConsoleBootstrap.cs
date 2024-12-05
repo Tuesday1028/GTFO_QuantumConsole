@@ -18,6 +18,7 @@ namespace Hikaria.QC.Bootstrap
 {
     [EnableFeatureByDefault]
     [DisallowInGameToggle]
+    [DoNotSaveToConfig]
     public class QuantumConsoleBootstrap : Feature
     {
         public override string Name => "量子终端加载器";

@@ -23,7 +23,7 @@ namespace Hikaria.QC.Suggestors
         protected override IEnumerable<string> GetItems(SuggestionContext context, SuggestorOptions options)
         {
             return Object.FindObjectsOfType(Il2CppType.From(context.TargetType))
-                .Select(cmp => (Component) cmp)
+                .Select(cmp => cmp.Cast<Component>())
                 .Select(cmp => cmp.gameObject.name);
         }
     }
