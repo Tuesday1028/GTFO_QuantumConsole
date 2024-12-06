@@ -1,5 +1,6 @@
 ﻿using BepInEx.Logging;
 using GameData;
+using Globals;
 using Hikaria.QC.Extras;
 using Hikaria.QC.UI;
 using Hikaria.QC.Utilities;
@@ -395,8 +396,8 @@ namespace Hikaria.QC.Bootstrap
             public BepInEx.Logging.LogLevel LogLevelFilter => QuantumConsoleSettings.BIELogLevel;
         }
 
-        [ArchivePatch(typeof(GameDataInit), nameof(GameDataInit.Initialize))]
-        private class GameDataInit__Initialize__Patch
+        [ArchivePatch(typeof(GlobalSetup), nameof(GlobalSetup.Awake))]
+        private class GlobalSetup__Awake__Patch
         {
             static bool _inited = false;
             private static void Prefix()
