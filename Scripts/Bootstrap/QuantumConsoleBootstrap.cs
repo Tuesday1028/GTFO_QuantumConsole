@@ -1,5 +1,4 @@
 ﻿using BepInEx.Logging;
-using GameData;
 using Globals;
 using Hikaria.QC.Extras;
 using Hikaria.QC.UI;
@@ -400,6 +399,7 @@ namespace Hikaria.QC.Bootstrap
         private class GlobalSetup__Awake__Patch
         {
             static bool _inited = false;
+
             private static void Prefix()
             {
                 if (!_inited)
