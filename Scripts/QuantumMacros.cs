@@ -20,7 +20,7 @@ namespace Hikaria.QC
             }
         }
 
-        private static readonly CustomSetting<Dictionary<string, string>> _macroTable = new CustomSetting<Dictionary<string, string>>("macros", new());
+        private static readonly CustomSettings<Dictionary<string, string>> _macroTable = new CustomSettings<Dictionary<string, string>>("macros", new());
 
         public static IReadOnlyDictionary<string, string> GetMacros()
         {

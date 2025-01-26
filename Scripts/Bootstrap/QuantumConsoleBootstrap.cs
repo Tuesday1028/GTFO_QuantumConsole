@@ -434,6 +434,9 @@ namespace Hikaria.QC.Bootstrap
                     console.Theme = Settings.ConsoleThemeSettings;
                     console.KeyConfig = Settings.KeySettings;
                     console.Preferences = Settings.ConsolePrefSettings;
+
+                    KeyBinderModule.Init();
+
                     _inited = true;
                 }
             }

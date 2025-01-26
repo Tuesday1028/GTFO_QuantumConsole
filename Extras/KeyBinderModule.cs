@@ -1,4 +1,5 @@
 ﻿#if !QC_DISABLED && !QC_DISABLE_BUILTIN_ALL && !QC_DISABLE_BUILTIN_EXTRA
+using Il2CppInterop.Runtime;
 using TheArchive.Core.ModulesAPI;
 using UnityEngine;
 
@@ -6,6 +7,14 @@ namespace Hikaria.QC.Extras
 {
     public class KeyBinderModule : MonoBehaviour
     {
+        internal static void Init()
+        {
+            GameObject obj = new GameObject($"{nameof(KeyBinderModule)}Singleton");
+            UnityEngine.Object.DontDestroyOnLoad(obj);
+            var target = obj.AddComponent(Il2CppType.From(typeof(KeyBinderModule), true)).Cast<Component>();
+            QuantumRegistry.RegisterObject(typeof(KeyBinderModule), target);
+        }
+
         private readonly struct Binding
         {
             public readonly KeyCode Key;
@@ -18,7 +27,7 @@ namespace Hikaria.QC.Extras
             }
         }
 
-        private readonly CustomSetting<List<Binding>> _bindings = new CustomSetting<List<Binding>>("bindings", new());
+        private readonly CustomSettings<List<Binding>> _bindings = new CustomSettings<List<Binding>>("bindings", new());
 
         private QuantumConsole _consoleInstance;
         private bool _blocked = false;
